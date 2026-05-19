@@ -476,38 +476,6 @@
       font-size: 0.95rem;
       font-weight: 500;
     }
-    .pilot-benefits {
-      display: flex;
-      gap: 12px;
-      margin-bottom: 28px;
-    }
-    .pilot-benefit {
-      flex: 1;
-      padding: 14px 16px;
-      border-radius: 12px;
-      text-align: center;
-    }
-    .pilot-benefit.pro {
-      background: var(--primary-50);
-      border: 1px solid var(--primary-200);
-    }
-    .pilot-benefit.discount {
-      background: #f0fdf4;
-      border: 1px solid #bbf7d0;
-    }
-    .pilot-benefit svg { width: 24px; height: 24px; margin: 0 auto 6px; display: block; }
-    .pilot-benefit.pro svg { color: var(--primary-500); }
-    .pilot-benefit.discount svg { color: #16a34a; }
-    .pilot-benefit strong {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .pilot-benefit span {
-      font-size: 0.78rem;
-      color: var(--gray-500);
-    }
     .pilot-form-group {
       margin-bottom: 16px;
     }
@@ -518,8 +486,7 @@
       color: var(--gray-700);
       margin-bottom: 5px;
     }
-    .pilot-form-group input,
-    .pilot-form-group select {
+    .pilot-form-group input {
       width: 100%;
       padding: 10px 14px;
       border: 1px solid var(--gray-300);
@@ -531,17 +498,11 @@
       transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
     }
-    .pilot-form-group input:focus,
-    .pilot-form-group select:focus {
+    .pilot-form-group input:focus {
       border-color: var(--primary-500);
       box-shadow: 0 0 0 3px rgba(237,69,118,0.12);
     }
     .pilot-form-group input::placeholder { color: var(--gray-400); }
-    .pilot-form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
     .pilot-submit {
       width: 100%;
       padding: 14px;
@@ -885,64 +846,16 @@
         <p style="color:var(--gray-500); font-size:0.95rem; margin:0;">Tell us you're interested and we'll be in touch.</p>
       </div>
 
-      <div class="pilot-benefits">
-        <div class="pilot-benefit pro">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <strong>Free Pro for 6 months</strong>
-          <span>Full Call Kudu Pro membership at no cost</span>
-        </div>
-        <div class="pilot-benefit discount">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-          <strong>Discounted rate after</strong>
-          <span>Locked-in reduced pricing when pilot ends</span>
-        </div>
-      </div>
+      <p class="pilot-note">Full Call Kudu membership at no cost</p>
 
       <form id="pilotForm" onsubmit="submitPilotForm(event)">
-        <div class="pilot-form-row">
-          <div class="pilot-form-group">
-            <label for="pilotName">Full Name *</label>
-            <input type="text" id="pilotName" name="name" placeholder="John Smith" required />
-          </div>
-          <div class="pilot-form-group">
-            <label for="pilotEmail">Email *</label>
-            <input type="email" id="pilotEmail" name="email" placeholder="john@business.co.za" required />
-          </div>
-        </div>
-
-        <div class="pilot-form-row">
-          <div class="pilot-form-group">
-            <label for="pilotPhone">Contact Number *</label>
-            <input type="tel" id="pilotPhone" name="phone" placeholder="071 234 5678" required />
-          </div>
-          <div class="pilot-form-group">
-            <label for="pilotBusiness">Business Name *</label>
-            <input type="text" id="pilotBusiness" name="businessName" placeholder="Your Business" required />
-          </div>
-        </div>
-
-        <div class="pilot-form-row">
-          <div class="pilot-form-group">
-            <label for="pilotType">Business Type *</label>
-            <input type="text" id="pilotType" name="businessType" placeholder="e.g. Salon, Restaurant, Vet" required />
-          </div>
-          <div class="pilot-form-group">
-            <label for="pilotLocation">Location *</label>
-            <input type="text" id="pilotLocation" name="location" placeholder="City, Province" required />
-          </div>
-        </div>
-
         <div class="pilot-form-group">
-          <label for="pilotEmployees">Number of Employees</label>
-          <select id="pilotEmployees" name="employees">
-            <option value="" disabled selected>Select range</option>
-            <option>Just me</option>
-            <option>2-5</option>
-            <option>6-10</option>
-            <option>11-25</option>
-            <option>26-50</option>
-            <option>50+</option>
-          </select>
+          <label for="pilotName">Name *</label>
+          <input type="text" id="pilotName" name="name" placeholder="Your name" required />
+        </div>
+        <div class="pilot-form-group">
+          <label for="pilotEmail">Email *</label>
+          <input type="email" id="pilotEmail" name="email" placeholder="you@business.co.za" required />
         </div>
 
         <button type="submit" class="pilot-submit" id="pilotSubmitBtn">Submit Interest</button>
@@ -1086,11 +999,6 @@
       const data = {
         name: form.name.value.trim(),
         email: form.email.value.trim(),
-        phone: form.phone.value.trim(),
-        businessName: form.businessName.value.trim(),
-        businessType: form.businessType.value,
-        location: form.location.value.trim(),
-        employees: form.employees.value,
       };
 
       try {
