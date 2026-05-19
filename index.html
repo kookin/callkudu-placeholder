@@ -654,7 +654,7 @@
       </div>
     </div>
 
-    <button class="btn-launch" onclick="showModal()" style="font-size:1rem; padding: 14px 32px;">
+    <button class="btn-launch" onclick="showPilotModal()" style="font-size:1rem; padding: 14px 32px;">
       Get Started
     </button>
 
@@ -849,13 +849,32 @@
       <p class="pilot-note">Full Call Kudu membership at no cost</p>
 
       <form id="pilotForm" onsubmit="submitPilotForm(event)">
-        <div class="pilot-form-group">
-          <label for="pilotName">Name *</label>
-          <input type="text" id="pilotName" name="name" placeholder="Your name" required />
+        <div class="pilot-form-row">
+          <div class="pilot-form-group">
+            <label for="pilotName">Name *</label>
+            <input type="text" id="pilotName" name="name" placeholder="Your name" required />
+          </div>
+          <div class="pilot-form-group">
+            <label for="pilotEmail">Email *</label>
+            <input type="email" id="pilotEmail" name="email" placeholder="you@business.co.za" required />
+          </div>
         </div>
+
+        <div class="pilot-form-row">
+          <div class="pilot-form-group">
+          </div>
+          <div class="pilot-form-group">
+          </div>
+        </div>
+
+        <div class="pilot-form-row">
+          <div class="pilot-form-group">
+          </div>
+          <div class="pilot-form-group">
+          </div>
+        </div>
+
         <div class="pilot-form-group">
-          <label for="pilotEmail">Email *</label>
-          <input type="email" id="pilotEmail" name="email" placeholder="you@business.co.za" required />
         </div>
 
         <button type="submit" class="pilot-submit" id="pilotSubmitBtn">Submit Interest</button>
