@@ -371,6 +371,19 @@
     }
     .footer p { font-size: 0.85rem; color: var(--gray-400); }
     .footer .brand-name { color: var(--primary-500); font-weight: 600; }
+    .footer-links {
+      margin-top: 8px;
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--primary-500); }
 
     /* ── Modal ── */
     .modal-overlay {
@@ -823,7 +836,11 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2025 <span class="brand-name">Call Kudu</span>. All rights reserved.</p>
+    <p>&copy; 2026 <span class="brand-name">Call Kudu</span>. All rights reserved.</p>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+    </div>
   </footer>
 
   <!-- Modal -->
