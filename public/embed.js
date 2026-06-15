@@ -10,11 +10,11 @@
     (tenant === 'uk' ? 'https://app.overtime.talk' : 'https://app.callkudu.co.za');
 
   var targetId = script.getAttribute('data-target') || 'callcaddy-embed';
-  var height = script.getAttribute('data-height') || '220';
+  var height = script.getAttribute('data-height') || '64';
   var source = script.getAttribute('data-source') || '';
-  var embedBg = '#0B1221';
+  var embedBg = 'transparent';
   var parsedHeight = parseInt(height, 10);
-  if (Number.isNaN(parsedHeight)) parsedHeight = 220;
+  if (Number.isNaN(parsedHeight)) parsedHeight = 64;
 
   var container = document.getElementById(targetId);
   if (!container) {
@@ -37,7 +37,7 @@
   iframe.style.border = '0';
   iframe.style.display = 'block';
   iframe.style.height = parsedHeight + 'px';
-  iframe.style.minHeight = '180px';
+  iframe.style.minHeight = '64px';
   iframe.style.maxHeight = '560px';
   iframe.style.borderRadius = '12px';
   iframe.style.background = embedBg;
@@ -50,6 +50,6 @@
     if (!event.data || event.data.type !== 'callcaddy-embed-resize') return;
     var nextHeight = Number(event.data.height);
     if (!Number.isFinite(nextHeight)) return;
-    iframe.style.height = Math.max(180, Math.min(560, Math.ceil(nextHeight))) + 'px';
+    iframe.style.height = Math.max(64, Math.min(560, Math.ceil(nextHeight))) + 'px';
   });
 })();
