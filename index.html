@@ -29,7 +29,7 @@
         <svg class="h-4 w-4 text-cream-500 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <button data-open-pilot class="hidden rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary-500/25 transition-colors hover:bg-primary-600 md:inline-flex">
-        Get Started
+        Join Pilot
       </button>
       <button id="mobileMenuToggle" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream-50 transition-all hover:bg-white/10 md:hidden" aria-label="Toggle menu">
         <svg id="menuIconOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -45,7 +45,7 @@
         <a href="#faq" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">FAQ</a>
         <div class="space-y-2 border-t border-white/10 pt-4">
           <a href="https://app.callkudu.co.za" class="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-cream-50">Login</a>
-          <button data-open-pilot data-close-menu class="w-full rounded-full bg-primary-500 py-3 text-sm font-semibold text-white">Get Started</button>
+          <button data-open-pilot data-close-menu class="w-full rounded-full bg-primary-500 py-3 text-sm font-semibold text-white">Join Pilot</button>
         </div>
       </div>
     </div>
@@ -68,14 +68,13 @@
         Stop losing revenue to missed calls. Call Kudu picks up every call instantly, books your customers in, and answers their questions—even while you're busy.
       </p>
 
-      <!-- Live trial embed (replaces waitlist form) -->
+      <!-- Live trial embed -->
       <div class="embed-shell mb-4">
         <div class="embed-inner">
-          <p class="mb-4 text-center text-sm font-medium text-cream-500">Try Call Kudu live — talk to our AI assistant now</p>
           <div id="callcaddy-embed"></div>
         </div>
       </div>
-      <script src="https://app.callkudu.co.za/embed.js" data-tenant="za" data-source="callkudu-home" data-height="640"></script>
+      <script src="https://app.callkudu.co.za/embed.js" data-tenant="za" data-source="callkudu-home" data-theme="dark" data-height="420"></script>
       <p class="mt-4 flex items-center justify-center gap-2 text-xs text-cream-500">
         <svg class="h-3 w-3 text-secondary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
         No signup required · Works in your browser
@@ -184,68 +183,45 @@
         </p>
       </div>
 
-      <div class="grid gap-4 sm:gap-6 md:grid-cols-3">
-        <div class="group relative col-span-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-navy-850 to-navy-900 p-6 sm:rounded-3xl sm:p-8 md:col-span-2">
-          <div class="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-primary-500/10 blur-3xl"></div>
-          <div class="relative z-10 flex min-h-[280px] flex-col sm:min-h-[300px]">
-            <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-950 sm:mb-8 sm:h-12 sm:w-12">
-              <svg class="h-7 w-7 text-primary-400 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-4-6a4 4 0 1 1 8 0c0 2-2 3.33-4 6z"/><path d="M12 12v10"/></svg>
-            </div>
-            <h3 class="mb-3 text-xl font-medium tracking-tight sm:text-2xl">Unlimited Minutes &amp; 24/7 Answering</h3>
-            <p class="max-w-md text-[15px] leading-relaxed text-cream-500 sm:text-base">
-              Unlike human receptionists, Call Kudu never sleeps, takes breaks, or charges overtime. Whether it's 2 PM or 2 AM, every customer gets a professional answer.
-            </p>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
+        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
+            <svg class="h-5 w-5 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-4-6a4 4 0 1 1 8 0c0 2-2 3.33-4 6z"/><path d="M12 12v10"/></svg>
           </div>
+          <h3 class="mb-2 text-base font-medium tracking-tight">Unlimited Minutes &amp; 24/7 Answering</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Every customer gets a professional answer—day, night, and weekends.</p>
         </div>
 
-        <div class="relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-navy-950 p-6 sm:rounded-3xl sm:p-8">
-          <div class="relative z-10 mb-6 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-900 sm:mb-8 sm:h-12 sm:w-12">
-            <svg class="h-7 w-7 text-cream-50 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
+            <svg class="h-5 w-5 text-cream-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
-          <h3 class="mb-2 text-lg font-medium tracking-tight sm:text-xl">Smart Spam Filtering</h3>
-          <p class="text-[15px] leading-relaxed text-cream-500 sm:text-sm">AI identifies sales and spam calls instantly, politely rejecting them so your phone only rings for real revenue.</p>
+          <h3 class="mb-2 text-base font-medium tracking-tight">Smart Spam Filtering</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Sales and spam calls are rejected so your line only rings for real revenue.</p>
         </div>
 
-        <div class="relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-primary-400/20 bg-primary-500 p-6 text-white sm:rounded-3xl sm:p-8">
-          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/20 bg-primary-600 shadow-inner sm:mb-6 sm:h-12 sm:w-12">
-            <svg class="h-7 w-7 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m9 16 2 2 4-4"/></svg>
+        <div class="flex min-h-[220px] flex-col rounded-2xl border border-primary-400/20 bg-primary-500/10 p-5 sm:rounded-3xl sm:p-6">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-primary-400/20 bg-primary-500/20">
+            <svg class="h-5 w-5 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m9 16 2 2 4-4"/></svg>
           </div>
-          <div>
-            <h3 class="mb-2 text-lg font-medium tracking-tight sm:text-xl">Book jobs directly</h3>
-            <p class="text-[15px] leading-relaxed text-primary-100 sm:text-sm">Connects to your Google/Outlook calendar. The AI negotiates times and books appointments straight into your diary.</p>
-          </div>
+          <h3 class="mb-2 text-base font-medium tracking-tight">Book jobs directly</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Connects to your calendar and books appointments straight into your diary.</p>
         </div>
 
-        <div class="relative col-span-full flex flex-col items-start gap-6 overflow-hidden rounded-2xl border border-white/10 bg-cream-50 p-6 text-navy-900 sm:rounded-3xl sm:gap-8 sm:p-8 md:flex-row md:items-center">
-          <div class="flex-1">
-            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-cream-200 bg-white sm:mb-6 sm:h-12 sm:w-12">
-              <svg class="h-7 w-7 text-navy-900 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <h3 class="mb-3 text-xl font-medium tracking-tight sm:text-2xl">In-call Actions &amp; Texting</h3>
-            <p class="text-[15px] leading-relaxed text-navy-700 sm:text-base">Need to send a payment link or an online ordering form? Call Kudu can text links to the caller during the conversation.</p>
+        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
+            <svg class="h-5 w-5 text-secondary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
           </div>
+          <h3 class="mb-2 text-base font-medium tracking-tight">In-call Actions &amp; Texting</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Send payment links or forms to callers by text during the conversation.</p>
         </div>
 
-        <div class="group relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-navy-950 p-6 sm:rounded-3xl sm:p-8">
-          <div class="absolute inset-0 bg-[#25D366]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
-          <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-900 text-[#25D366] sm:mb-6 sm:h-12 sm:w-12">
-            <svg class="h-7 w-7 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
+          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
+            <svg class="h-5 w-5 text-cream-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2 4 4 0 0 0-4 4v1"/><path d="M14 10V4a2 2 0 0 0-2-2 4 4 0 0 0-4 4v2"/><path d="M4 11v1a8 8 0 0 0 16 0v-1"/><path d="M10 21v-2a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/></svg>
           </div>
-          <div class="relative z-10">
-            <h3 class="mb-2 text-lg font-medium tracking-tight sm:text-xl">WhatsApp Switch</h3>
-            <p class="text-[15px] leading-relaxed text-cream-500 sm:text-sm">Prefer text? Callers can choose to continue the conversation on WhatsApp. The AI sends a template message instantly.</p>
-          </div>
-        </div>
-
-        <div class="relative col-span-full flex min-h-[280px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-navy-850 to-navy-900 p-6 sm:min-h-[300px] sm:rounded-3xl sm:p-8 md:col-span-2">
-          <div class="absolute bottom-0 right-0 h-64 w-64 translate-x-1/2 translate-y-1/2 rounded-full bg-secondary-500/5 blur-3xl"></div>
-          <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-950 sm:mb-6 sm:h-12 sm:w-12">
-            <svg class="h-7 w-7 text-cream-50 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2 4 4 0 0 0-4 4v1"/><path d="M14 10V4a2 2 0 0 0-2-2 4 4 0 0 0-4 4v2"/><path d="M4 11v1a8 8 0 0 0 16 0v-1"/><path d="M10 21v-2a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/></svg>
-          </div>
-          <div class="relative z-10">
-            <h3 class="mb-3 text-xl font-medium tracking-tight sm:text-2xl">Seamless Human Handover</h3>
-            <p class="max-w-lg text-[15px] leading-relaxed text-cream-500 sm:text-base">If a caller asks to speak to a person, or the AI detects a complex issue it can't resolve, it intelligently patches the call through to your mobile immediately.</p>
-          </div>
+          <h3 class="mb-2 text-base font-medium tracking-tight">Seamless Human Handover</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Complex calls patch through to your mobile the moment a human is needed.</p>
         </div>
       </div>
     </div>
@@ -527,10 +503,7 @@
     <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
       <div class="mb-24 flex flex-col items-end justify-between gap-10 md:flex-row">
         <h2 class="max-w-lg text-5xl font-medium tracking-tight">Stop missing calls.<br />Start closing deals.</h2>
-        <div class="flex w-full max-w-sm flex-col gap-3 sm:flex-row">
-          <button data-open-pilot class="flex-1 rounded-lg bg-primary-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-600">Join Pilot</button>
-          <a href="https://app.callkudu.co.za" class="flex-1 rounded-lg border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-white/5">Launch App</a>
-        </div>
+        <button data-open-pilot class="rounded-lg bg-primary-500 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-600">Join Pilot</button>
       </div>
       <div class="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4">
@@ -546,15 +519,6 @@
                   <p class="text-sm font-medium text-cream-50 transition-colors group-hover:text-primary-400">support@callkudu.co.za</p>
                 </div>
               </a>
-              <div class="flex items-start gap-4">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-500/10">
-                  <svg class="h-5 w-5 text-secondary-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
-                </div>
-                <div>
-                  <p class="mb-1 text-xs font-medium text-navy-400">Company</p>
-                  <p class="text-sm font-medium leading-relaxed text-cream-50">Paradise Node (Pty) Ltd<br />South Africa</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>

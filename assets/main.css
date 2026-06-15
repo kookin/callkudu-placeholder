@@ -88,11 +88,19 @@
   }
 
   .embed-inner {
-    @apply relative rounded-2xl border border-white/10 bg-navy-900/90 p-3 shadow-2xl backdrop-blur-xl md:p-5;
+    @apply relative overflow-hidden rounded-2xl border border-white/10 bg-navy-950 p-1 shadow-2xl md:p-2;
   }
 
   .embed-inner #callcaddy-embed {
-    @apply overflow-hidden rounded-xl;
+    @apply overflow-hidden rounded-xl bg-navy-950;
+  }
+
+  .embed-inner #callcaddy-embed iframe {
+    display: block;
+    width: 100%;
+    min-height: 420px;
+    border: 0;
+    background: #0b1221;
   }
 
   .pilot-overlay {
