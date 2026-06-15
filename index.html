@@ -3,1111 +3,618 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Call Kudu - Never Miss a Call</title>
-  <meta name="description" content="AI-powered phone assistant for businesses. Handle calls 24/7 with intelligent automation. Never miss a booking again." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --primary-50: #fef2f6;
-      --primary-100: #fde6ed;
-      --primary-200: #fcc0d4;
-      --primary-300: #fa99ba;
-      --primary-400: #f5537f;
-      --primary-500: #ed4576;
-      --primary-600: #d83d6a;
-      --primary-700: #b33358;
-      --primary-800: #8f2946;
-      --primary-900: #6b1f35;
-      --secondary-50: #edfafe;
-      --secondary-100: #d5f3f8;
-      --secondary-200: #aee8f2;
-      --secondary-300: #7ddcea;
-      --secondary-400: #54d3e5;
-      --secondary-500: #54d3e5;
-      --secondary-600: #3bb8cc;
-      --secondary-700: #2d96a8;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-300: #d1d5db;
-      --gray-400: #9ca3af;
-      --gray-500: #6b7280;
-      --gray-600: #4b5563;
-      --gray-700: #374151;
-      --gray-800: #1f2937;
-      --gray-900: #111827;
-      --emerald-500: #22c55e;
-      --slate-600: #475569;
-      --red-500: #ef4444;
-    }
-
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      color: var(--gray-900);
-      background: var(--gray-50);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      line-height: 1.6;
-    }
-
-    /* ── Nav ── */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--gray-200);
-      transition: box-shadow 0.3s;
-    }
-    .nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
-    .nav-inner {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 0 24px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-logo img { height: 36px; }
-    .nav-logo span { font-size: 1.25rem; font-weight: 700; color: var(--gray-900); }
-    .nav-logo .kudu-accent { color: var(--primary-500); }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--gray-600);
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--secondary-600); }
-    .btn-launch {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 22px;
-      background: var(--primary-500);
-      color: #fff !important;
-      text-decoration: none;
-      border: none;
-      border-radius: 9999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-      box-shadow: 0 2px 12px rgba(237,69,118,0.25);
-    }
-    .btn-launch:hover {
-      background: var(--primary-600);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(237,69,118,0.35);
-    }
-
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .mobile-menu-btn svg { width: 28px; height: 28px; color: var(--gray-700); }
-
-    /* ── Hero ── */
-    .hero {
-      padding: 140px 24px 80px;
-      text-align: center;
-      background: linear-gradient(180deg, #fff 0%, var(--secondary-50) 45%, var(--gray-50) 100%);
-    }
-    .hero-logo { margin-bottom: 32px; }
-    .hero-logo img { height: 300px; }
-    .hero h1 {
-      font-size: clamp(2rem, 5vw, 3.25rem);
-      font-weight: 800;
-      line-height: 1.15;
-      color: var(--gray-900);
-      margin-bottom: 16px;
-    }
-    .hero h1 .accent { color: var(--secondary-600); }
-    .hero .subtitle {
-      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-      color: var(--gray-500);
-      max-width: 600px;
-      margin: 0 auto 40px;
-    }
-
-    /* Slot machine */
-    .slot-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 48px;
-    }
-    .slot-label { font-size: 1.1rem; font-weight: 500; color: var(--gray-700); }
-    .slot-window {
-      height: 36px;
-      overflow: hidden;
-      width: 160px;
-      position: relative;
-    }
-    .slot-track {
-      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .slot-item {
-      height: 36px;
-      display: flex;
-      align-items: center;
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--secondary-600);
-    }
-
-    /* Stats row */
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 64px;
-      margin-top: 48px;
-    }
-    .stat-value { font-size: 2rem; font-weight: 800; color: var(--secondary-600); }
-    .stat-label { font-size: 0.875rem; font-weight: 500; color: var(--gray-700); margin-top: 2px; }
-
-    /* ── Sections ── */
-    section { padding: 80px 24px; }
-    .container { max-width: 1120px; margin: 0 auto; }
-    .section-label {
-      display: inline-block;
-      padding: 4px 14px;
-      border-radius: 9999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      background: var(--secondary-50);
-      color: var(--secondary-700);
-      margin-bottom: 16px;
-    }
-    .section-title {
-      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
-      font-weight: 800;
-      color: var(--gray-900);
-      margin-bottom: 12px;
-    }
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: var(--gray-500);
-      max-width: 560px;
-      margin-bottom: 48px;
-    }
-    .section-subtitle.centered { margin-left: auto; margin-right: auto; text-align: center; }
-
-    /* ── Features ── */
-    .features-section { background: #fff; }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 32px;
-    }
-    .feature-card {
-      padding: 32px;
-      background: var(--gray-50);
-      border-radius: 16px;
-      border: 1px solid var(--gray-200);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.06);
-    }
-    .feature-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      background: #fff;
-      border: 1px solid var(--gray-200);
-      color: var(--gray-700);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
-      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
-    }
-    .feature-icon svg { width: 22px; height: 22px; }
-    .feature-card:hover .feature-icon {
-      border-color: var(--secondary-200);
-      color: var(--secondary-700);
-      box-shadow: 0 6px 18px rgba(84,211,229,0.18);
-    }
-    .feature-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; color: var(--gray-900); }
-    .feature-card p { font-size: 0.95rem; color: var(--gray-500); line-height: 1.6; }
-
-    /* ── How It Works ── */
-    .hiw-section { background: var(--gray-50); }
-    .hiw-flow {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 0;
-      position: relative;
-      padding: 40px 0 20px;
-    }
-    .hiw-step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex: 0 0 160px;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-    .hiw-circle {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
-      transition: transform 0.5s, box-shadow 0.5s;
-      position: relative;
-    }
-    .hiw-circle svg { width: 32px; height: 32px; color: #fff; }
-    .hiw-circle.bg-slate { background: var(--slate-600); }
-    .hiw-circle.bg-red { background: var(--red-500); }
-    .hiw-circle.bg-pink { background: var(--secondary-500); }
-    .hiw-circle.bg-green { background: var(--emerald-500); }
-    .hiw-circle.active { transform: scale(1.15); }
-    .hiw-circle.bg-pink.active { box-shadow: 0 0 32px rgba(84,211,229,0.45); }
-    .hiw-circle.bg-green.active { box-shadow: 0 0 32px rgba(34,197,94,0.4); }
-    .hiw-step-label { font-size: 0.875rem; font-weight: 600; color: var(--gray-800); }
-    .hiw-connector {
-      flex: 0 0 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-top: 20px;
-    }
-    .hiw-connector .line {
-      width: 60px;
-      height: 3px;
-      background: var(--gray-200);
-      border-radius: 2px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hiw-connector .line .fill {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 100%;
-      width: 0%;
-      border-radius: 2px;
-      transition: width 0.6s ease-out;
-    }
-    .hiw-connector:nth-child(2) .fill { background: linear-gradient(90deg, var(--slate-600), var(--red-500)); }
-    .hiw-connector:nth-child(4) .fill { background: linear-gradient(90deg, var(--red-500), var(--secondary-500)); }
-    .hiw-connector:nth-child(6) .fill { background: linear-gradient(90deg, var(--secondary-500), var(--emerald-500)); }
-
-    .hiw-stats {
-      display: flex;
-      justify-content: center;
-      gap: 64px;
-      margin-top: 48px;
-    }
-
-    /* Ping animation for check */
-    @keyframes ping {
-      75%, 100% { transform: scale(2); opacity: 0; }
-    }
-    .ping-ring {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.3);
-      animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
-    }
-
-    /* ── Contact ── */
-    .contact-section { background: #fff; }
-    .contact-card {
-      max-width: 560px;
-      margin: 0 auto;
-      padding: 48px;
-      background: var(--gray-50);
-      border-radius: 20px;
-      border: 1px solid var(--gray-200);
-      text-align: center;
-    }
-    .contact-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 12px; }
-    .contact-card p { color: var(--gray-500); margin-bottom: 28px; font-size: 1rem; }
-    .contact-email {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 14px 28px;
-      background: var(--secondary-50);
-      border: 1px solid var(--secondary-200);
-      border-radius: 12px;
-      color: var(--secondary-700);
-      font-weight: 600;
-      font-size: 1.05rem;
-      text-decoration: none;
-      transition: background 0.2s, transform 0.15s;
-    }
-    .contact-email:hover {
-      background: var(--secondary-100);
-      transform: translateY(-2px);
-    }
-    .contact-email svg { width: 20px; height: 20px; }
-
-    /* ── Embed ── */
-    .embed-section {
-      background: #fff;
-      border-top: 1px solid var(--gray-200);
-      border-bottom: 1px solid var(--gray-200);
-    }
-    .embed-wrap {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-    .embed-wrap .section-subtitle.centered {
-      margin-bottom: 32px;
-    }
-    #callcaddy-embed {
-      width: 100%;
-      min-height: 680px;
-    }
-
-    /* ── Footer ── */
-    .footer {
-      padding: 32px 24px;
-      text-align: center;
-      border-top: 1px solid var(--gray-200);
-      background: #fff;
-    }
-    .footer p { font-size: 0.85rem; color: var(--gray-400); }
-    .footer .brand-name { color: var(--primary-500); font-weight: 600; }
-    .footer-links {
-      margin-top: 8px;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-    }
-    .footer-links a {
-      font-size: 0.85rem;
-      color: var(--gray-500);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--secondary-600); }
-
-    /* ── Modal ── */
-    .modal-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 200;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    .modal-overlay.active { display: flex; }
-    .modal {
-      background: #fff;
-      border-radius: 20px;
-      padding: 48px 40px;
-      max-width: 440px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.15);
-      animation: modalIn 0.3s ease-out;
-    }
-    @keyframes modalIn {
-      from { opacity: 0; transform: scale(0.95) translateY(8px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .modal-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: var(--primary-50);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-    .modal-icon svg { width: 32px; height: 32px; color: var(--primary-500); }
-    .modal h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
-    .modal p { color: var(--gray-500); font-size: 1rem; margin-bottom: 28px; line-height: 1.6; }
-    .modal-close {
-      padding: 12px 32px;
-      background: var(--gray-900);
-      color: #fff;
-      border: none;
-      border-radius: 9999px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .modal-close:hover { background: var(--gray-800); }
-
-    /* ── Pilot Button ── */
-    .btn-pilot {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 10px 22px;
-      background: transparent;
-      color: var(--secondary-600);
-      border: 2px solid var(--secondary-500);
-      border-radius: 9999px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s, transform 0.15s, box-shadow 0.2s;
-    }
-    .btn-pilot:hover {
-      background: var(--secondary-500);
-      color: #fff;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(84,211,229,0.35);
-    }
-
-    /* ── Pilot Modal ── */
-    .pilot-modal {
-      background: #fff;
-      border-radius: 20px;
-      padding: 40px 36px;
-      max-width: 520px;
-      width: 100%;
-      text-align: left;
-      box-shadow: 0 24px 64px rgba(0,0,0,0.15);
-      animation: modalIn 0.3s ease-out;
-      max-height: 90vh;
-      overflow-y: auto;
-    }
-    .pilot-modal-header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-    .pilot-modal-header h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .pilot-note {
-      text-align: center;
-      margin-bottom: 24px;
-      padding: 14px 16px;
-      background: var(--primary-50);
-      border-radius: 12px;
-      color: var(--gray-700);
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    .pilot-form-group {
-      margin-bottom: 16px;
-    }
-    .pilot-form-group label {
-      display: block;
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--gray-700);
-      margin-bottom: 5px;
-    }
-    .pilot-form-group input {
-      width: 100%;
-      padding: 10px 14px;
-      border: 1px solid var(--gray-300);
-      border-radius: 10px;
-      font-size: 0.95rem;
-      font-family: inherit;
-      color: var(--gray-900);
-      background: #fff;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      outline: none;
-    }
-    .pilot-form-group input:focus {
-      border-color: var(--primary-500);
-      box-shadow: 0 0 0 3px rgba(237,69,118,0.12);
-    }
-    .pilot-form-group input::placeholder { color: var(--gray-400); }
-    .pilot-submit {
-      width: 100%;
-      padding: 14px;
-      background: var(--primary-500);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 600;
-      font-family: inherit;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-top: 8px;
-    }
-    .pilot-submit:hover { background: var(--primary-600); }
-    .pilot-submit:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
-    .pilot-close-x {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
-      border: none;
-      background: var(--gray-100);
-      border-radius: 50%;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 0.2s;
-    }
-    .pilot-close-x:hover { background: var(--gray-200); }
-    .pilot-close-x svg { width: 16px; height: 16px; color: var(--gray-500); }
-    .pilot-message {
-      text-align: center;
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      margin-top: 12px;
-      display: none;
-    }
-    .pilot-message.success {
-      display: block;
-      background: #f0fdf4;
-      color: #166534;
-      border: 1px solid #bbf7d0;
-    }
-    .pilot-message.error {
-      display: block;
-      background: #fef2f2;
-      color: #991b1b;
-      border: 1px solid #fecaca;
-    }
-
-    /* ── Responsive ── */
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-links.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: #fff;
-        border-bottom: 1px solid var(--gray-200);
-        padding: 24px;
-        gap: 20px;
-        box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-      }
-      .mobile-menu-btn { display: block; }
-      .stats-row, .hiw-stats { gap: 32px; }
-      .hiw-flow {
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-      }
-      .hiw-step { flex: none; }
-      .hiw-connector {
-        flex: none;
-        transform: rotate(90deg);
-        padding-top: 0;
-        margin: -4px 0;
-      }
-      .slot-row { flex-direction: column; gap: 4px; }
-      .slot-window { margin: 0 auto; }
-      .hero { padding: 120px 24px 60px; }
-      section { padding: 60px 24px; }
-      .contact-card { padding: 32px 24px; }
-    }
-
-    /* ── Scroll animation ── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <title>Call Kudu — Never Miss a Call</title>
+  <meta name="description" content="AI-powered phone assistant for South African businesses. Answer every call instantly, book appointments, and capture leads 24/7." />
+  <link rel="icon" href="/logo_kudu_sub_light_512x512_t.webp" type="image/webp" />
+  <script type="module" src="/assets/main.js"></script>
 </head>
-<body>
+<body class="bg-navy-950 text-cream-50 antialiased selection:bg-primary-500/30">
 
-  <!-- Nav -->
-  <nav class="nav" id="nav">
-    <div class="nav-inner">
-      <a href="#" class="nav-logo">
-        <img src="/logo_kudu_sub_light_512x512_t.webp" alt="Call Kudu" />
-        <span>Call <span class="kudu-accent">Kudu</span></span>
+  <!-- Navigation -->
+  <nav class="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between border-b border-white/5 px-6 py-6 lg:px-12">
+    <a href="/" class="flex items-center">
+      <img src="/logo_kudu_sub_light_512x512_t.webp" alt="Call Kudu" class="h-14 w-14 cursor-pointer transition-opacity hover:opacity-80 md:h-16 md:w-16" />
+    </a>
+
+    <div class="hidden items-center gap-8 text-sm font-medium text-cream-500 md:flex">
+      <a href="#features" class="transition-colors hover:text-cream-50">Features</a>
+      <a href="#samples" class="transition-colors hover:text-cream-50">Demos</a>
+      <a href="#pricing" class="transition-colors hover:text-cream-50">Pricing</a>
+      <a href="#faq" class="transition-colors hover:text-cream-50">FAQ</a>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <a href="https://app.callkudu.co.za" class="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-cream-50 transition-all hover:bg-white/10 md:flex group">
+        Login
+        <svg class="h-4 w-4 text-cream-500 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#features">Features</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#contact">Contact</a>
-        <button class="btn-pilot" onclick="showPilotModal()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-          Sign Up For Pilot
-        </button>
-        <a href="https://app.callkudu.co.za" class="btn-launch" target="_blank" rel="noopener">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
-          Launch App
-        </a>
-      </div>
-      <button class="mobile-menu-btn" onclick="toggleMenu()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <button data-open-pilot class="hidden rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary-500/25 transition-colors hover:bg-primary-600 md:inline-flex">
+        Get Started
       </button>
+      <button id="mobileMenuToggle" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream-50 transition-all hover:bg-white/10 md:hidden" aria-label="Toggle menu">
+        <svg id="menuIconOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="menuIconClose" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+
+    <div id="mobileMenu" class="absolute left-0 right-0 top-full mt-4 hidden border-y border-white/10 bg-navy-900 shadow-xl md:hidden">
+      <div class="space-y-1 px-6 py-4">
+        <a href="#features" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Features</a>
+        <a href="#samples" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Demos</a>
+        <a href="#pricing" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Pricing</a>
+        <a href="#faq" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">FAQ</a>
+        <div class="space-y-2 border-t border-white/10 pt-4">
+          <a href="https://app.callkudu.co.za" class="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-cream-50">Login</a>
+          <button data-open-pilot data-close-menu class="w-full rounded-full bg-primary-500 py-3 text-sm font-semibold text-white">Get Started</button>
+        </div>
+      </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <section class="hero" id="hero">
-    <div class="hero-logo">
-      <img src="/logo_kudu_sub_light_512x512_t.webp" alt="Call Kudu" />
-    </div>
-    <p class="subtitle">
-      AI-powered phone assistant for businesses. Handle incoming calls 24/7 with intelligent automation — so you can focus on what matters.
-    </p>
+  <header class="relative mx-auto max-w-7xl px-6 pb-32 pt-12 lg:px-12">
+    <div class="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary-500/20 opacity-30 blur-[120px]"></div>
 
-    <div class="slot-row">
-      <span class="slot-label">Your business:</span>
-      <div class="slot-window">
-        <div class="slot-track" id="slotTrack"></div>
+    <div class="relative z-10 mb-16 flex flex-col items-center text-center">
+      <div class="mb-8 inline-flex items-center rounded-full border border-primary-500/30 bg-primary-500/10 px-3 py-1 text-xs font-medium text-primary-400">
+        Free pilot programme · South Africa
+      </div>
+
+      <h1 class="text-gradient mb-6 max-w-4xl text-5xl font-medium leading-[1.2] tracking-tighter md:text-7xl">
+        If you miss calls, you're bleeding revenue
+      </h1>
+
+      <p class="mb-10 max-w-2xl text-lg font-normal leading-relaxed text-cream-500">
+        Stop losing revenue to missed calls. Call Kudu picks up every call instantly, books your customers in, and answers their questions—even while you're busy.
+      </p>
+
+      <!-- Live trial embed (replaces waitlist form) -->
+      <div class="embed-shell mb-4">
+        <div class="embed-inner">
+          <p class="mb-4 text-center text-sm font-medium text-cream-500">Try Call Kudu live — talk to our AI assistant now</p>
+          <div id="callcaddy-embed"></div>
+        </div>
+      </div>
+      <script src="https://app.callkudu.co.za/embed.js" data-tenant="za" data-source="callkudu-home" data-height="640"></script>
+      <p class="mt-4 flex items-center justify-center gap-2 text-xs text-cream-500">
+        <svg class="h-3 w-3 text-secondary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+        No signup required · Works in your browser
+      </p>
+    </div>
+
+    <!-- Phone mockup -->
+    <div class="relative mx-auto mt-12 flex min-h-[600px] w-full max-w-5xl items-center justify-center">
+      <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-b from-navy-900/0 via-navy-800/30 to-navy-900/0 blur-3xl"></div>
+
+      <div class="float-slow relative z-20 flex h-[640px] w-[300px] flex-col overflow-hidden rounded-[48px] border-[8px] border-navy-850 bg-navy-950 shadow-2xl ring-1 ring-white/10 md:w-[320px]">
+        <div class="absolute left-1/2 top-0 z-30 h-7 w-28 -translate-x-1/2 rounded-b-2xl bg-black"></div>
+        <div class="absolute left-[-10px] top-24 h-8 w-[3px] rounded-l-md bg-navy-800"></div>
+        <div class="absolute left-[-10px] top-36 h-14 w-[3px] rounded-l-md bg-navy-800"></div>
+        <div class="absolute right-[-10px] top-28 h-20 w-[3px] rounded-r-md bg-navy-800"></div>
+
+        <div class="relative flex flex-1 flex-col items-center bg-gradient-to-b from-navy-900 to-navy-950 px-6 pb-12 pt-24">
+          <div class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-primary-500/10 blur-3xl"></div>
+          <div class="relative z-10 w-full space-y-3 text-center">
+            <h3 class="text-2xl font-semibold leading-tight tracking-tight text-white">Rosebank Florist</h3>
+            <p class="text-sm font-medium tracking-wide text-cream-500/80">New Customer Calling...</p>
+          </div>
+          <div class="mt-4 font-mono text-xs tracking-widest text-cream-500/60">00:12</div>
+          <div class="flex flex-1 items-center justify-center">
+            <div class="flex h-12 items-center gap-1.5">
+              <div class="h-4 w-1.5 animate-[wave_1.2s_ease-in-out_infinite] rounded-full bg-white/20"></div>
+              <div class="h-8 w-1.5 animate-[wave_0.8s_ease-in-out_infinite] rounded-full bg-white/40"></div>
+              <div class="h-12 w-1.5 animate-[wave_1.1s_ease-in-out_infinite] rounded-full bg-white"></div>
+              <div class="h-6 w-1.5 animate-[wave_0.9s_ease-in-out_infinite] rounded-full bg-white/40"></div>
+              <div class="h-4 w-1.5 animate-[wave_1.3s_ease-in-out_infinite] rounded-full bg-white/20"></div>
+            </div>
+          </div>
+          <div class="relative z-10 w-full space-y-6">
+            <div class="grid w-full grid-cols-3 gap-4 px-2">
+              <div class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-white/5 text-cream-500 backdrop-blur-sm transition-colors hover:bg-white/10"><span class="text-[10px] font-medium tracking-wide">mute</span></div>
+              <div class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-white/5 text-cream-500 backdrop-blur-sm transition-colors hover:bg-white/10"><span class="text-[10px] font-medium tracking-wide">keypad</span></div>
+              <div class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-white text-navy-950 shadow-lg shadow-white/5 transition-colors hover:bg-cream-100"><span class="text-[10px] font-medium tracking-wide">speaker</span></div>
+            </div>
+            <div class="flex justify-center">
+              <div class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-red-500/90 shadow-lg shadow-red-500/20 transition-all hover:scale-105 hover:bg-red-500">
+                <svg class="h-8 w-8 fill-current text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.1 13.9a14 14 0 0 0 3.732 2.668 1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 18 18 0 0 1-12.728-5.272"/><path d="M22 2 2 22"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat bubbles -->
+      <div class="msg-bubble delay-1 absolute left-3 right-3 top-[15%] z-30 w-auto md:left-[2%] md:right-auto md:top-[25%] md:max-w-[340px] lg:left-[8%]">
+        <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-navy-800/90 p-3 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-primary-500/30 md:rounded-2xl md:p-5">
+          <div class="relative z-10 flex items-start gap-2 md:gap-4">
+            <div class="relative shrink-0">
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 shadow-lg shadow-primary-500/20 ring-1 ring-white/10 md:h-12 md:w-12 md:ring-2">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" alt="AI assistant" class="h-full w-full rounded-full object-cover opacity-90" />
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-navy-800 bg-brandgreen-500 md:-bottom-1 md:-right-1 md:h-4 md:w-4"></div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <span class="mb-1.5 block text-xs font-bold text-primary-400 md:mb-2 md:text-sm">AI Assistant</span>
+              <p class="text-sm font-medium leading-relaxed text-white md:text-xl">"Hi, Rosebank Florist, I'm Thandi the AI assistant, how can I help?"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg-bubble delay-2 absolute left-3 right-3 top-[35%] z-30 w-auto md:left-auto md:right-[2%] md:top-[45%] md:max-w-[340px] lg:right-[8%]">
+        <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-cream-50/10 p-3 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-white/20 md:rounded-2xl md:p-5">
+          <div class="relative z-10 flex items-start gap-2 md:flex-row-reverse md:gap-4">
+            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-navy-700 md:h-12 md:w-12"><span class="text-sm font-medium text-cream-200 md:text-lg">SM</span></div>
+            <div class="min-w-0 flex-1 md:text-right">
+              <span class="mb-1.5 block text-xs font-bold text-cream-200 md:mb-2 md:text-sm">Human Customer</span>
+              <p class="text-sm font-medium leading-relaxed text-white md:text-xl">"Hi, do you do weddings? We're getting married next year."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg-bubble delay-3 absolute left-3 right-3 top-[55%] z-30 w-auto md:left-[2%] md:right-auto md:top-[60%] md:max-w-[340px] lg:left-[8%]">
+        <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-navy-800/90 p-3 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-secondary-500/30 md:rounded-2xl md:p-5">
+          <div class="relative z-10 flex items-start gap-2 md:gap-4">
+            <div class="relative shrink-0">
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-secondary-500 shadow-lg shadow-secondary-500/20 ring-1 ring-white/10 md:h-12 md:w-12 md:ring-2">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" alt="AI assistant" class="h-full w-full rounded-full object-cover opacity-90" />
+              </div>
+              <div class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-navy-800 bg-brandgreen-500 md:-bottom-1 md:-right-1 md:h-4 md:w-4"></div>
+            </div>
+            <div class="min-w-0 flex-1">
+              <span class="mb-1.5 block text-xs font-bold text-secondary-400 md:mb-2 md:text-sm">AI Assistant</span>
+              <p class="text-sm font-medium leading-relaxed text-white md:text-xl">"Congratulations! Absolutely we do—we'd love to book you in for a consultation."</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-    <button class="btn-launch" onclick="showPilotModal()" style="font-size:1rem; padding: 14px 32px;">
-      Get Started
-    </button>
-
-    <div class="stats-row">
-      <div>
-        <div class="stat-value">24/7</div>
-        <div class="stat-label">Available</div>
-      </div>
-      <div>
-        <div class="stat-value">30+</div>
-        <div class="stat-label">AI Voices</div>
-      </div>
-      <div>
-        <div class="stat-value">0</div>
-        <div class="stat-label">Missed Bookings</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Live demo embed -->
-  <section class="embed-section" id="demo">
-    <div class="container embed-wrap reveal">
-      <span class="section-label">Try it</span>
-      <h2 class="section-title" style="text-align:center;">Talk to Call Kudu</h2>
-      <p class="section-subtitle centered">Experience the AI assistant directly in your browser.</p>
-      <div id="callcaddy-embed"></div>
-      <script
-        src="https://app.callkudu.co.za/embed.js"
-        data-tenant="za"
-        data-source="callkudu-home"
-        data-height="680"
-      ></script>
-    </div>
-  </section>
+  </header>
 
   <!-- Features -->
-  <section class="features-section" id="features">
-    <div class="container reveal">
-      <span class="section-label">Features</span>
-      <h2 class="section-title">Your AI Receptionist</h2>
-      <p class="section-subtitle">Everything you need to make sure no customer call goes unanswered.</p>
-      <div class="features-grid">
-
-        <div class="feature-card">
-          <div class="feature-icon pink">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          </div>
-          <h3>24/7 Call Answering</h3>
-          <p>Your AI assistant picks up every call, day or night, weekends and holidays — so your customers are never left waiting.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon green">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </div>
-          <h3>Automated Bookings</h3>
-          <p>The AI takes reservations and appointments on your behalf, syncing directly with your calendar. No double bookings, no hassle.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon blue">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3>FAQ Handling</h3>
-          <p>Common questions about hours, pricing, location, and services are answered instantly — freeing you from repetitive calls.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon amber">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </div>
-          <h3>Customisable Persona</h3>
-          <p>Choose from 30+ voice options and tailor your assistant's personality, tone, and knowledge to match your brand perfectly.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon purple">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
-          </div>
-          <h3>No Tech Required</h3>
-          <p>Set up in under 5 minutes with a simple guided wizard. No hardware, no apps to install — just forward your calls and go.</p>
-        </div>
-
-        <div class="feature-card">
-          <div class="feature-icon teal">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Call Dashboard</h3>
-          <p>View transcripts, listen to recordings, and track every interaction from a clean, real-time dashboard.</p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- How It Works -->
-  <section class="hiw-section" id="how-it-works">
-    <div class="container" style="text-align:center;">
-      <div class="reveal">
-        <span class="section-label">How It Works</span>
-        <h2 class="section-title">Never miss a booking again</h2>
-        <p class="section-subtitle centered">When you can't answer, Call Kudu steps in — automatically.</p>
+  <section id="features" class="border-t border-white/5 bg-navy-900 px-6 py-16 text-cream-50 sm:py-24 lg:px-12">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-12 grid items-end gap-8 md:mb-16 md:grid-cols-2 md:gap-12">
+        <h2 class="text-[2.5rem] font-medium leading-[1.1] tracking-tighter sm:text-5xl md:leading-[1.05]">
+          Everything you need to <span class="text-cream-500">automate your phone lines.</span>
+        </h2>
+        <p class="max-w-sm text-base font-normal leading-relaxed text-cream-500 sm:text-lg md:pt-8">
+          Handle peak times, after-hours calls, and spam without lifting a finger.
+        </p>
       </div>
 
-      <div class="hiw-flow reveal" id="hiwFlow">
-        <!-- Step 1 -->
-        <div class="hiw-step">
-          <div class="hiw-circle bg-slate" id="hiwCircle0">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <div class="grid gap-4 sm:gap-6 md:grid-cols-3">
+        <div class="group relative col-span-full overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-navy-850 to-navy-900 p-6 sm:rounded-3xl sm:p-8 md:col-span-2">
+          <div class="absolute right-0 top-0 h-64 w-64 -translate-y-1/2 translate-x-1/2 rounded-full bg-primary-500/10 blur-3xl"></div>
+          <div class="relative z-10 flex min-h-[280px] flex-col sm:min-h-[300px]">
+            <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-950 sm:mb-8 sm:h-12 sm:w-12">
+              <svg class="h-7 w-7 text-primary-400 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-4-6a4 4 0 1 1 8 0c0 2-2 3.33-4 6z"/><path d="M12 12v10"/></svg>
+            </div>
+            <h3 class="mb-3 text-xl font-medium tracking-tight sm:text-2xl">Unlimited Minutes &amp; 24/7 Answering</h3>
+            <p class="max-w-md text-[15px] leading-relaxed text-cream-500 sm:text-base">
+              Unlike human receptionists, Call Kudu never sleeps, takes breaks, or charges overtime. Whether it's 2 PM or 2 AM, every customer gets a professional answer.
+            </p>
           </div>
-          <span class="hiw-step-label">Customer calls</span>
         </div>
-        <!-- Connector -->
-        <div class="hiw-connector"><div class="line"><div class="fill" id="hiwFill0"></div></div></div>
-        <!-- Step 2 -->
-        <div class="hiw-step">
-          <div class="hiw-circle bg-red" id="hiwCircle1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
-          </div>
-          <span class="hiw-step-label">Human unavailable</span>
-        </div>
-        <!-- Connector -->
-        <div class="hiw-connector"><div class="line"><div class="fill" id="hiwFill1"></div></div></div>
-        <!-- Step 3 -->
-        <div class="hiw-step">
-          <div class="hiw-circle bg-pink" id="hiwCircle2">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg>
-          </div>
-          <span class="hiw-step-label">AI answers</span>
-        </div>
-        <!-- Connector -->
-        <div class="hiw-connector"><div class="line"><div class="fill" id="hiwFill2"></div></div></div>
-        <!-- Step 4 -->
-        <div class="hiw-step">
-          <div class="hiw-circle bg-green" id="hiwCircle3">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <span class="hiw-step-label">Booking confirmed</span>
-        </div>
-      </div>
 
-      <div class="hiw-stats reveal">
-        <div>
-          <div class="stat-value">24/7</div>
-          <div class="stat-label">Available</div>
+        <div class="relative flex min-h-[240px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-navy-950 p-6 sm:rounded-3xl sm:p-8">
+          <div class="relative z-10 mb-6 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-900 sm:mb-8 sm:h-12 sm:w-12">
+            <svg class="h-7 w-7 text-cream-50 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 class="mb-2 text-lg font-medium tracking-tight sm:text-xl">Smart Spam Filtering</h3>
+          <p class="text-[15px] leading-relaxed text-cream-500 sm:text-sm">AI identifies sales and spam calls instantly, politely rejecting them so your phone only rings for real revenue.</p>
         </div>
-        <div>
-          <div class="stat-value">30+</div>
-          <div class="stat-label">AI Voices</div>
+
+        <div class="relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-primary-400/20 bg-primary-500 p-6 text-white sm:rounded-3xl sm:p-8">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/20 bg-primary-600 shadow-inner sm:mb-6 sm:h-12 sm:w-12">
+            <svg class="h-7 w-7 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m9 16 2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h3 class="mb-2 text-lg font-medium tracking-tight sm:text-xl">Book jobs directly</h3>
+            <p class="text-[15px] leading-relaxed text-primary-100 sm:text-sm">Connects to your Google/Outlook calendar. The AI negotiates times and books appointments straight into your diary.</p>
+          </div>
         </div>
-        <div>
-          <div class="stat-value">0</div>
-          <div class="stat-label">Missed Bookings</div>
+
+        <div class="relative col-span-full flex flex-col items-start gap-6 overflow-hidden rounded-2xl border border-white/10 bg-cream-50 p-6 text-navy-900 sm:rounded-3xl sm:gap-8 sm:p-8 md:flex-row md:items-center">
+          <div class="flex-1">
+            <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-cream-200 bg-white sm:mb-6 sm:h-12 sm:w-12">
+              <svg class="h-7 w-7 text-navy-900 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <h3 class="mb-3 text-xl font-medium tracking-tight sm:text-2xl">In-call Actions &amp; Texting</h3>
+            <p class="text-[15px] leading-relaxed text-navy-700 sm:text-base">Need to send a payment link or an online ordering form? Call Kudu can text links to the caller during the conversation.</p>
+          </div>
+        </div>
+
+        <div class="group relative flex min-h-[240px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-navy-950 p-6 sm:rounded-3xl sm:p-8">
+          <div class="absolute inset-0 bg-[#25D366]/5 opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+          <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-900 text-[#25D366] sm:mb-6 sm:h-12 sm:w-12">
+            <svg class="h-7 w-7 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+          </div>
+          <div class="relative z-10">
+            <h3 class="mb-2 text-lg font-medium tracking-tight sm:text-xl">WhatsApp Switch</h3>
+            <p class="text-[15px] leading-relaxed text-cream-500 sm:text-sm">Prefer text? Callers can choose to continue the conversation on WhatsApp. The AI sends a template message instantly.</p>
+          </div>
+        </div>
+
+        <div class="relative col-span-full flex min-h-[280px] flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-navy-850 to-navy-900 p-6 sm:min-h-[300px] sm:rounded-3xl sm:p-8 md:col-span-2">
+          <div class="absolute bottom-0 right-0 h-64 w-64 translate-x-1/2 translate-y-1/2 rounded-full bg-secondary-500/5 blur-3xl"></div>
+          <div class="relative z-10 mb-5 flex h-14 w-14 items-center justify-center rounded-xl border border-white/10 bg-navy-950 sm:mb-6 sm:h-12 sm:w-12">
+            <svg class="h-7 w-7 text-cream-50 sm:h-6 sm:w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2 4 4 0 0 0-4 4v1"/><path d="M14 10V4a2 2 0 0 0-2-2 4 4 0 0 0-4 4v2"/><path d="M4 11v1a8 8 0 0 0 16 0v-1"/><path d="M10 21v-2a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          <div class="relative z-10">
+            <h3 class="mb-3 text-xl font-medium tracking-tight sm:text-2xl">Seamless Human Handover</h3>
+            <p class="max-w-lg text-[15px] leading-relaxed text-cream-500 sm:text-base">If a caller asks to speak to a person, or the AI detects a complex issue it can't resolve, it intelligently patches the call through to your mobile immediately.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
-  <section class="contact-section" id="contact">
-    <div class="container" style="text-align:center;">
-      <div class="reveal">
-        <span class="section-label">Contact Us</span>
-        <h2 class="section-title">Get in Touch</h2>
-        <p class="section-subtitle centered">Have questions or want to learn more? We'd love to hear from you.</p>
+  <!-- Samples / Demos -->
+  <section id="samples" class="border-t border-white/5 bg-navy-950 px-6 py-16 sm:py-24 lg:px-12">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-12 text-center sm:mb-16">
+        <h2 class="mb-4 text-3xl font-medium tracking-tighter text-white md:text-5xl">Hear Call Kudu in action</h2>
+        <p class="text-base text-cream-500 sm:text-lg">Real conversations handled by our AI assistants.</p>
+      </div>
 
-        <div class="contact-card">
-          <h3>Drop us an email</h3>
-          <p>Whether you have a question, need support, or want to explore how Call Kudu can help your business — reach out any time.</p>
-          <a href="mailto:support@callkudu.co.za" class="contact-email">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-            support@callkudu.co.za
-          </a>
+      <div id="samplesScroll" class="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 scrollbar-hide md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 lg:grid-cols-4">
+        <!-- Lead Qualification -->
+        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="1">
+          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-rose-500/20 bg-rose-500/10 text-rose-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+                </div>
+                <span class="font-medium text-cream-50">Lead Qualification</span>
+              </div>
+              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Screening</span>
+            </div>
+            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-rose-400" data-audio-bars>
+              <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
+            </div>
+            <div class="flex items-center justify-center border-t border-white/5 pt-4">
+              <button data-audio-id="1" class="flex h-12 w-12 items-center justify-center rounded-full bg-rose-500 text-white shadow-lg shadow-rose-500/20 transition-all hover:bg-rose-400 group-hover:scale-105">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
         </div>
+
+        <!-- Appointment Booking -->
+        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="2">
+          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+                </div>
+                <span class="font-medium text-cream-50">Appointment Booking</span>
+              </div>
+              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Scheduling</span>
+            </div>
+            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-blue-400" data-audio-bars>
+              <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
+            </div>
+            <div class="flex items-center justify-center border-t border-white/5 pt-4">
+              <button data-audio-id="2" class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-400">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="3">
+          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+                </div>
+                <span class="font-medium text-cream-50">WhatsApp Handover</span>
+              </div>
+              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Transfer</span>
+            </div>
+            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-emerald-400" data-audio-bars>
+              <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
+            </div>
+            <div class="flex items-center justify-center border-t border-white/5 pt-4">
+              <button data-audio-id="3" class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:bg-emerald-400">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cold Call Screening -->
+        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="4">
+          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/20 bg-amber-500/10 text-amber-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <span class="font-medium text-cream-50">Cold Call Screening</span>
+              </div>
+              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Filtering</span>
+            </div>
+            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-amber-400" data-audio-bars>
+              <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
+            </div>
+            <div class="flex items-center justify-center border-t border-white/5 pt-4">
+              <button data-audio-id="4" class="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-white shadow-lg shadow-amber-500/20 transition-all hover:bg-amber-400">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex justify-center gap-2 md:hidden">
+        <button data-sample-dot="0" class="h-2 w-8 rounded-full bg-primary-500 transition-all" aria-label="Demo 1"></button>
+        <button data-sample-dot="1" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 2"></button>
+        <button data-sample-dot="2" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 3"></button>
+        <button data-sample-dot="3" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 4"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="rounded-t-[3rem] bg-cream-50 px-6 py-24 text-navy-950 lg:px-12">
+    <div class="mx-auto max-w-7xl">
+      <div class="mx-auto grid gap-6 lg:grid-cols-3">
+        <div class="flex min-h-[450px] flex-col justify-between rounded-3xl border border-cream-200 bg-white p-8 shadow-sm">
+          <div>
+            <div class="mb-8 flex items-start justify-between">
+              <span class="text-sm font-semibold uppercase tracking-wider text-navy-500">Starter</span>
+            </div>
+            <div class="mb-6 flex items-baseline gap-1">
+              <span class="text-6xl font-semibold tracking-tight text-navy-950">R599</span>
+              <span class="text-xl text-navy-500">/mo</span>
+            </div>
+            <ul class="space-y-4 font-medium text-navy-700">
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Unlimited Minutes</li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Appointment booking</li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp Handover</li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Transfer to human</li>
+            </ul>
+          </div>
+          <a href="https://app.callkudu.co.za" class="mt-8 block w-full rounded-xl border border-cream-200 py-4 text-center font-semibold text-navy-900 transition-colors hover:bg-cream-100">Start Free Trial</a>
+        </div>
+        <div class="relative flex min-h-[450px] flex-col justify-between overflow-hidden rounded-3xl border border-navy-800 bg-navy-900 p-8 text-cream-50 shadow-2xl">
+          <div class="absolute right-0 top-0 h-24 w-24 bg-primary-500 opacity-20 blur-[60px]"></div>
+          <div>
+            <div class="mb-8 flex items-start justify-between">
+              <span class="text-sm font-semibold uppercase tracking-wider text-primary-400">Professional</span>
+            </div>
+            <div class="mb-6 flex items-baseline gap-1">
+              <span class="text-6xl font-semibold tracking-tight text-white">R2,499</span>
+              <span class="text-xl text-navy-400">/mo</span>
+            </div>
+            <ul class="space-y-4 font-medium text-cream-200">
+              <li class="flex gap-3 text-white"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="font-bold">Everything in Starter</span></li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Zapier Integration</li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>7000+ app integrations</li>
+            </ul>
+          </div>
+          <button data-open-pilot class="mt-8 w-full rounded-xl bg-primary-500 py-4 font-semibold text-white shadow-lg shadow-primary-500/25 transition-colors hover:bg-primary-600">Join Pilot Programme</button>
+        </div>
+        <div class="flex min-h-[450px] flex-col justify-between rounded-3xl border border-navy-800 bg-navy-950 p-8 text-cream-50">
+          <div>
+            <div class="mb-8 flex items-start justify-between">
+              <span class="text-sm font-semibold uppercase tracking-wider text-navy-400">Enterprise</span>
+            </div>
+            <div class="mb-6 flex items-baseline gap-1"><span class="text-5xl font-semibold tracking-tight text-white">POA</span></div>
+            <ul class="space-y-4 font-medium text-cream-200">
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="font-bold">Everything in Professional</span></li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Custom API Integrations</li>
+              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Outbound Calling</li>
+            </ul>
+          </div>
+          <a href="mailto:support@callkudu.co.za" class="mt-8 block w-full rounded-xl border border-white/20 py-4 text-center font-semibold text-white transition-colors hover:bg-white/5">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="relative overflow-hidden bg-navy-950 py-24">
+    <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent"></div>
+    <div class="relative z-10 mx-auto max-w-6xl px-6 lg:px-12">
+      <div class="mb-16 text-center">
+        <h2 class="mb-4 text-4xl font-bold tracking-tight text-cream-50 md:text-5xl">Frequently Asked Questions</h2>
+        <p class="mx-auto max-w-2xl text-lg text-navy-400">Everything you need to know about Call Kudu</p>
+      </div>
+
+      <div class="divide-y divide-white/10">
+        <div data-faq-item class="border-b border-white/10">
+          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
+            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">What is an AI receptionist and how is it different from voicemail?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pb-6 leading-relaxed text-navy-400">An AI receptionist holds a two-way conversation in real time. Unlike voicemail, Call Kudu can book appointments, answer questions, and send text messages immediately—keeping your business live 24/7.</p>
+          </div>
+        </div>
+        <div data-faq-item class="border-b border-white/10">
+          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
+            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">Can the AI understand South African accents?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pb-6 leading-relaxed text-navy-400">Yes. Call Kudu is built for South African businesses, with natural language processing tuned for local accents and conversational English. Your callers hear a friendly, professional voice—not a robotic overseas accent.</p>
+          </div>
+        </div>
+        <div data-faq-item class="border-b border-white/10">
+          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
+            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">How much does it cost compared to hiring staff?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pb-6 leading-relaxed text-navy-400">Call Kudu costs a fraction of a full-time receptionist. Plans start at R599/month with unlimited minutes, 24/7 coverage, and no holiday pay or sick leave—making it the most cost-effective way to never miss a call.</p>
+          </div>
+        </div>
+        <div data-faq-item class="border-b border-white/10">
+          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
+            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">How hard is it to set up?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pb-6 leading-relaxed text-navy-400">Setup takes less than 10 minutes. Add your business details, services, and pricing in the dashboard, then forward calls to your Call Kudu number. You can turn the AI on or off instantly.</p>
+          </div>
+        </div>
+        <div data-faq-item class="border-b border-white/10">
+          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
+            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">Will I lose my existing business phone number?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pb-6 leading-relaxed text-navy-400">No. You keep your existing number and simply set up call forwarding when you're busy or after a few rings. You stay in full control of your primary business line.</p>
+          </div>
+        </div>
+        <div data-faq-item class="border-b border-white/10">
+          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
+            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">What happens if the AI doesn't know the answer?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
+            <p class="pb-6 leading-relaxed text-navy-400">Call Kudu takes a detailed message, marks the call for your attention, or transfers to you if the caller asks for a person. Your customers always feel heard.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-16 text-center">
+        <p class="mb-6 text-navy-400">Still have questions? We're here to help.</p>
+        <a href="mailto:support@callkudu.co.za" class="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-primary-600">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial stat -->
+  <section class="border-t border-white/10 px-6 pb-32 pt-32 text-cream-50 lg:px-12">
+    <div class="relative mx-auto max-w-5xl text-center">
+      <div class="absolute -top-8 left-1/2 -translate-x-1/2 text-primary-500 opacity-10">
+        <svg class="h-24 w-24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.1 13.9a14 14 0 0 0 3.732 2.668 1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 18 18 0 0 1-12.728-5.272"/><path d="M22 2 2 22"/></svg>
+      </div>
+      <div class="mb-8">
+        <div class="mb-6 inline-flex items-center gap-4 md:gap-6">
+          <span class="text-7xl font-bold tracking-tight text-white md:text-8xl">1</span>
+          <span class="text-4xl font-medium text-navy-400 md:text-5xl">in</span>
+          <span class="text-7xl font-bold tracking-tight text-primary-500 md:text-8xl">3</span>
+        </div>
+        <h3 class="mb-6 text-3xl font-semibold leading-tight tracking-tight md:text-5xl">
+          of all calls to South African businesses<br /><span class="text-primary-500">go unanswered</span>
+        </h3>
+        <p class="mx-auto max-w-2xl text-lg leading-relaxed text-navy-300 md:text-xl">
+          Every missed call is a potential customer choosing your competitor. Don't let your hard-earned leads slip away while you're busy working.
+        </p>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="footer">
-    <p>&copy; 2026 <span class="brand-name">Call Kudu</span>. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="/privacy">Privacy Policy</a>
-      <a href="/terms">Terms of Service</a>
+  <footer class="relative overflow-hidden border-t border-white/5 bg-navy-950 pb-8 pt-24 text-cream-50">
+    <div class="pointer-events-none absolute bottom-0 left-0 right-0 flex select-none justify-center overflow-hidden">
+      <div class="whitespace-nowrap text-center text-[18vw] font-bold leading-none tracking-tighter text-white opacity-[0.02]">CALL KUDU</div>
+    </div>
+    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
+      <div class="mb-24 flex flex-col items-end justify-between gap-10 md:flex-row">
+        <h2 class="max-w-lg text-5xl font-medium tracking-tight">Stop missing calls.<br />Start closing deals.</h2>
+        <div class="flex w-full max-w-sm flex-col gap-3 sm:flex-row">
+          <button data-open-pilot class="flex-1 rounded-lg bg-primary-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-600">Join Pilot</button>
+          <a href="https://app.callkudu.co.za" class="flex-1 rounded-lg border border-white/20 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-white/5">Launch App</a>
+        </div>
+      </div>
+      <div class="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-4">
+          <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-navy-900/50 to-navy-900/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-white/20">
+            <h4 class="mb-6 text-lg font-semibold text-white">Get in Touch</h4>
+            <div class="space-y-6">
+              <a href="mailto:support@callkudu.co.za" class="group flex cursor-pointer items-start gap-4">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-500/10 transition-colors group-hover:bg-primary-500/20">
+                  <svg class="h-5 w-5 text-primary-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+                </div>
+                <div>
+                  <p class="mb-1 text-xs font-medium text-navy-400">Email</p>
+                  <p class="text-sm font-medium text-cream-50 transition-colors group-hover:text-primary-400">support@callkudu.co.za</p>
+                </div>
+              </a>
+              <div class="flex items-start gap-4">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary-500/10">
+                  <svg class="h-5 w-5 text-secondary-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <p class="mb-1 text-xs font-medium text-navy-400">Company</p>
+                  <p class="text-sm font-medium leading-relaxed text-cream-50">Paradise Node (Pty) Ltd<br />South Africa</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-12 text-sm md:grid-cols-3 lg:col-span-8">
+          <div>
+            <h4 class="mb-6 font-semibold text-white">Product</h4>
+            <ul class="space-y-4 font-medium text-navy-400">
+              <li><a href="#features" class="transition-colors hover:text-cream-50">Features</a></li>
+              <li><a href="#pricing" class="transition-colors hover:text-cream-50">Pricing</a></li>
+              <li><a href="#samples" class="transition-colors hover:text-cream-50">Demos</a></li>
+              <li><a href="#faq" class="transition-colors hover:text-cream-50">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="mb-6 font-semibold text-white">Company</h4>
+            <ul class="space-y-4 font-medium text-navy-400">
+              <li><a href="mailto:support@callkudu.co.za" class="transition-colors hover:text-cream-50">Contact</a></li>
+              <li><a href="/privacy" class="transition-colors hover:text-cream-50">Privacy Policy</a></li>
+              <li><a href="/terms" class="transition-colors hover:text-cream-50">Terms of Service</a></li>
+              <li><a href="https://app.callkudu.co.za" class="transition-colors hover:text-cream-50">Launch App</a></li>
+            </ul>
+          </div>
+          <div class="col-span-2 md:col-span-1">
+            <h4 class="mb-6 font-semibold text-white">Try it now</h4>
+            <p class="text-navy-400">Scroll up to talk to our AI assistant live—no signup required.</p>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col items-center justify-between border-t border-white/10 pt-8 text-xs font-medium text-navy-500 md:flex-row">
+        <div class="mb-4 md:mb-0">&copy; 2026 Paradise Node (Pty) Ltd · Call Kudu</div>
+        <div class="flex gap-4">
+          <a href="/privacy" class="hover:text-cream-50">Privacy</a>
+          <a href="/terms" class="hover:text-cream-50">Terms</a>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- Modal -->
-  <div class="modal-overlay" id="modal" onclick="hideModal(event)">
-    <div class="modal" onclick="event.stopPropagation()">
-      <div class="modal-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-      </div>
-      <h2>Coming Soon</h2>
-      <p>We're still building the Call Kudu app. We'll let you know when it's ready to launch. Stay tuned!</p>
-      <button class="modal-close" onclick="hideModal()">Got it</button>
-    </div>
-  </div>
-
-  <!-- Pilot Signup Modal -->
-  <div class="modal-overlay" id="pilotModal" onclick="hidePilotModal(event)">
-    <div class="pilot-modal" onclick="event.stopPropagation()" style="position:relative;">
-      <button class="pilot-close-x" onclick="hidePilotModal()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  <!-- Pilot modal -->
+  <div id="pilotModal" class="pilot-overlay" onclick="hidePilotModal(event)">
+    <div class="pilot-dialog" onclick="event.stopPropagation()">
+      <button onclick="hidePilotModal()" class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-colors hover:bg-gray-200" aria-label="Close">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
-
-      <div class="pilot-modal-header">
-        <h2>Sign Up For Pilot</h2>
-        <p style="color:var(--gray-500); font-size:0.95rem; margin:0;">Tell us you're interested and we'll be in touch.</p>
-      </div>
-
-      <p class="pilot-note">Full Call Kudu membership at no cost</p>
-
-      <form id="pilotForm" onsubmit="submitPilotForm(event)">
-        <div class="pilot-form-row">
-          <div class="pilot-form-group">
-            <label for="pilotName">Name *</label>
-            <input type="text" id="pilotName" name="name" placeholder="Your name" required />
-          </div>
-          <div class="pilot-form-group">
-            <label for="pilotEmail">Email *</label>
-            <input type="email" id="pilotEmail" name="email" placeholder="you@business.co.za" required />
-          </div>
+      <h2 class="mb-2 text-2xl font-bold text-gray-900">Sign Up For Pilot</h2>
+      <p class="mb-6 text-sm text-gray-500">Full Call Kudu membership at no cost. Tell us you're interested and we'll be in touch.</p>
+      <form id="pilotForm">
+        <div class="mb-4">
+          <label for="pilotName" class="mb-1.5 block text-sm font-medium text-gray-700">Name *</label>
+          <input type="text" id="pilotName" name="name" required placeholder="Your name" class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20" />
         </div>
-
-        <div class="pilot-form-row">
-          <div class="pilot-form-group">
-          </div>
-          <div class="pilot-form-group">
-          </div>
+        <div class="mb-6">
+          <label for="pilotEmail" class="mb-1.5 block text-sm font-medium text-gray-700">Email *</label>
+          <input type="email" id="pilotEmail" name="email" required placeholder="you@business.co.za" class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20" />
         </div>
-
-        <div class="pilot-form-row">
-          <div class="pilot-form-group">
-          </div>
-          <div class="pilot-form-group">
-          </div>
-        </div>
-
-        <div class="pilot-form-group">
-        </div>
-
-        <button type="submit" class="pilot-submit" id="pilotSubmitBtn">Submit Interest</button>
-        <div class="pilot-message" id="pilotMessage"></div>
+        <button type="submit" id="pilotSubmitBtn" class="w-full rounded-lg bg-primary-500 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-600 disabled:opacity-50">Submit Interest</button>
+        <div id="pilotMessage" class="hidden"></div>
       </form>
     </div>
   </div>
-
-  <script>
-    // Slot machine
-    const businessTypes = [
-      'Barber', 'Restaurant', 'Florist', 'Salon', 'Cafe', 'BnB',
-      'Masseuse', 'Therapist', 'Physio', 'Lodge', 'Acupuncturist',
-      'Hairdresser', 'Kineticist', 'Spa', 'Dentist', 'Vet'
-    ];
-
-    const slotTrack = document.getElementById('slotTrack');
-    businessTypes.forEach(type => {
-      const div = document.createElement('div');
-      div.className = 'slot-item';
-      div.textContent = type;
-      slotTrack.appendChild(div);
-    });
-    // Duplicate first item for seamless loop
-    const firstClone = document.createElement('div');
-    firstClone.className = 'slot-item';
-    firstClone.textContent = businessTypes[0];
-    slotTrack.appendChild(firstClone);
-
-    let slotIndex = 0;
-    setInterval(() => {
-      slotIndex++;
-      slotTrack.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
-      slotTrack.style.transform = `translateY(-${slotIndex * 36}px)`;
-
-      if (slotIndex >= businessTypes.length) {
-        setTimeout(() => {
-          slotTrack.style.transition = 'none';
-          slotIndex = 0;
-          slotTrack.style.transform = 'translateY(0)';
-        }, 460);
-      }
-    }, 600);
-
-    // How It Works animation
-    let hiwStep = 0;
-    const circles = [0,1,2,3].map(i => document.getElementById('hiwCircle' + i));
-    const fills = [0,1,2].map(i => document.getElementById('hiwFill' + i));
-
-    function updateHiw() {
-      circles.forEach((c, i) => {
-        c.classList.toggle('active', i === hiwStep);
-        if (i === 3 && i === hiwStep) {
-          // add ping
-          if (!c.querySelector('.ping-ring')) {
-            const ring = document.createElement('span');
-            ring.className = 'ping-ring';
-            c.appendChild(ring);
-          }
-        } else if (i === 3) {
-          const ring = c.querySelector('.ping-ring');
-          if (ring) ring.remove();
-        }
-      });
-      fills.forEach((f, i) => {
-        f.style.width = (hiwStep > i) ? '100%' : '0%';
-      });
-    }
-
-    setInterval(() => {
-      hiwStep = (hiwStep + 1) % 4;
-      if (hiwStep === 0) {
-        fills.forEach(f => { f.style.transition = 'none'; f.style.width = '0%'; });
-        setTimeout(() => fills.forEach(f => { f.style.transition = 'width 0.6s ease-out'; }), 50);
-      }
-      updateHiw();
-    }, 1800);
-    updateHiw();
-
-    // Nav scroll shadow
-    window.addEventListener('scroll', () => {
-      document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
-    });
-
-    // Mobile menu
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('open');
-    }
-
-    // Modal
-    function showModal() {
-      document.getElementById('modal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function hideModal(e) {
-      if (e && e.target !== document.getElementById('modal') && e.type === 'click') return;
-      document.getElementById('modal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // Scroll reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.15 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // Close mobile menu on link click
-    document.querySelectorAll('#navLinks a').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('navLinks').classList.remove('open');
-      });
-    });
-
-    // Pilot modal
-    function showPilotModal() {
-      document.getElementById('pilotModal').classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    function hidePilotModal(e) {
-      if (e && e.target !== document.getElementById('pilotModal') && e.type === 'click') return;
-      document.getElementById('pilotModal').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    async function submitPilotForm(e) {
-      e.preventDefault();
-      const btn = document.getElementById('pilotSubmitBtn');
-      const msg = document.getElementById('pilotMessage');
-      const form = document.getElementById('pilotForm');
-
-      btn.disabled = true;
-      btn.textContent = 'Submitting...';
-      msg.className = 'pilot-message';
-      msg.style.display = 'none';
-
-      const data = {
-        name: form.name.value.trim(),
-        email: form.email.value.trim(),
-      };
-
-      try {
-        const res = await fetch('/api/pilot-signup', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const result = await res.json();
-        if (res.ok) {
-          msg.className = 'pilot-message success';
-          msg.textContent = 'Thanks for your interest! We\'ll be in touch soon.';
-          msg.style.display = 'block';
-          form.reset();
-        } else {
-          throw new Error(result.error || 'Something went wrong');
-        }
-      } catch (err) {
-        msg.className = 'pilot-message error';
-        msg.textContent = err.message || 'Failed to submit. Please try again or email us directly.';
-        msg.style.display = 'block';
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Submit Interest';
-      }
-    }
-  </script>
 
 </body>
 </html>

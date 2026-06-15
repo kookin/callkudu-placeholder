@@ -11,6 +11,9 @@
     "nodemailer": "^6.9.16"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
     "vite": "^6.3.2"
   }
 }
