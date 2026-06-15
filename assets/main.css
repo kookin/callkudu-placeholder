@@ -98,9 +98,12 @@
   .embed-inner #callcaddy-embed iframe {
     display: block;
     width: 100%;
-    min-height: 420px;
+    height: 220px;
+    min-height: 180px;
+    max-height: 560px;
     border: 0;
     background: #0b1221;
+    transition: height 0.2s ease;
   }
 
   .pilot-overlay {
