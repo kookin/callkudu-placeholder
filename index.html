@@ -370,6 +370,24 @@
     }
     .contact-email svg { width: 20px; height: 20px; }
 
+    /* ── Embed ── */
+    .embed-section {
+      background: #fff;
+      border-top: 1px solid var(--gray-200);
+      border-bottom: 1px solid var(--gray-200);
+    }
+    .embed-wrap {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .embed-wrap .section-subtitle.centered {
+      margin-bottom: 32px;
+    }
+    #callcaddy-embed {
+      width: 100%;
+      min-height: 680px;
+    }
+
     /* ── Footer ── */
     .footer {
       padding: 32px 24px;
@@ -696,6 +714,22 @@
         <div class="stat-value">0</div>
         <div class="stat-label">Missed Bookings</div>
       </div>
+    </div>
+  </section>
+
+  <!-- Live demo embed -->
+  <section class="embed-section" id="demo">
+    <div class="container embed-wrap reveal">
+      <span class="section-label">Try it</span>
+      <h2 class="section-title" style="text-align:center;">Talk to Call Kudu</h2>
+      <p class="section-subtitle centered">Experience the AI assistant directly in your browser.</p>
+      <div id="callcaddy-embed"></div>
+      <script
+        src="https://app.callkudu.co.za/embed.js"
+        data-tenant="za"
+        data-source="callkudu-home"
+        data-height="680"
+      ></script>
     </div>
   </section>
 
