@@ -23,7 +23,7 @@ module.exports = async function handler(req, res) {
 
   const htmlBody = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
-      <h2 style="color:#ed4576;">New Pilot Program Interest</h2>
+      <h2 style="color:#FF6B2C;">New Pilot Program Interest</h2>
       <table style="width:100%;border-collapse:collapse;">
         <tr><td style="padding:8px 12px;font-weight:bold;color:#374151;">Name</td><td style="padding:8px 12px;">${name}</td></tr>
         <tr style="background:#f9fafb;"><td style="padding:8px 12px;font-weight:bold;color:#374151;">Email</td><td style="padding:8px 12px;"><a href="mailto:${email}">${email}</a></td></tr>
