@@ -143,7 +143,7 @@
 
     modalBackdrop = document.createElement('div');
     modalBackdrop.style.cssText =
-      'position:absolute;inset:0;background:rgba(11,18,33,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:auto;';
+      'position:absolute;inset:0;background:rgba(11,18,33,0.28);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);pointer-events:auto;';
     modalBackdrop.addEventListener('click', function () {
       handleParentCloseRequest();
     });
