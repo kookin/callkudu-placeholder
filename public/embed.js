@@ -40,7 +40,6 @@
   // Parent-page modal shell — blurs the marketing site behind the signup wizard.
   var modalRoot = null;
   var modalBackdrop = null;
-  var modalPanel = null;
   var inlineHost = document.createElement('div');
   inlineHost.style.width = '100%';
   var popupHeight = 360;
@@ -78,7 +77,9 @@
     iframe.style.left = '';
     iframe.style.right = '';
     iframe.style.bottom = '';
+    iframe.style.transform = '';
     iframe.style.width = '100%';
+    iframe.style.maxWidth = '';
     iframe.style.height = height + 'px';
     iframe.style.minHeight = height + 'px';
     iframe.style.maxHeight = '';
@@ -86,6 +87,7 @@
     iframe.style.borderRadius = '12px';
     iframe.style.background = 'transparent';
     iframe.style.boxShadow = '';
+    iframe.style.overflow = '';
   }
 
   function applyModalHeight(nextHeight) {
@@ -94,20 +96,32 @@
     iframe.style.height = h + 'px';
     iframe.style.minHeight = h + 'px';
     iframe.style.maxHeight = 'min(90vh, ' + h + 'px)';
-    if (modalPanel) {
-      modalPanel.style.maxHeight = 'min(90vh, ' + h + 'px)';
-    }
   }
 
-  function setInlineHostCollapsed(collapsed) {
+  function applyModalIframeStyles() {
+    applyModalHeight(popupHeight);
+    iframe.style.position = 'fixed';
+    iframe.style.top = '50%';
+    iframe.style.left = '50%';
+    iframe.style.right = 'auto';
+    iframe.style.bottom = 'auto';
+    iframe.style.transform = 'translate(-50%, -50%)';
+    iframe.style.width = 'calc(100% - 32px)';
+    iframe.style.maxWidth = '440px';
+    iframe.style.zIndex = '2147483647';
+    iframe.style.borderRadius = '16px';
+    iframe.style.background = '#131C2E';
+    iframe.style.boxShadow = '0 24px 80px rgba(0,0,0,0.45)';
+    iframe.style.overflow = 'hidden';
+  }
+
+  function collapseHeroSlot(collapsed) {
     if (collapsed) {
-      inlineHost.style.visibility = 'hidden';
       inlineHost.style.height = '0';
       inlineHost.style.minHeight = '0';
       inlineHost.style.overflow = 'hidden';
       container.style.minHeight = '0';
     } else {
-      inlineHost.style.visibility = '';
       inlineHost.style.height = '';
       inlineHost.style.minHeight = '';
       inlineHost.style.overflow = '';
@@ -118,38 +132,28 @@
   function openModal() {
     if (modalRoot) return;
 
-    setInlineHostCollapsed(true);
-
     modalRoot = document.createElement('div');
     modalRoot.id = 'callkudu-embed-modal-root';
     modalRoot.setAttribute('role', 'dialog');
     modalRoot.setAttribute('aria-modal', 'true');
     modalRoot.setAttribute('aria-label', 'Try Call Kudu');
     modalRoot.style.cssText =
-      'position:fixed;inset:0;z-index:2147483646;display:flex;align-items:center;justify-content:center;padding:16px;';
+      'position:fixed;inset:0;z-index:2147483646;pointer-events:none;';
 
     modalBackdrop = document.createElement('div');
     modalBackdrop.style.cssText =
-      'position:absolute;inset:0;background:rgba(11,18,33,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);';
+      'position:absolute;inset:0;background:rgba(11,18,33,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:auto;';
     modalBackdrop.addEventListener('click', function () {
       postToIframe({ type: 'callkudu-embed-close-request' });
     });
 
-    modalPanel = document.createElement('div');
-    modalPanel.style.cssText =
-      'position:relative;z-index:1;width:100%;max-width:440px;max-height:min(90vh,720px);border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.45);background:#131C2E;';
-
-    applyModalHeight(popupHeight);
-    iframe.style.position = 'static';
-    iframe.style.width = '100%';
-    iframe.style.borderRadius = '0';
-    iframe.style.background = '#131C2E';
-
-    modalPanel.appendChild(iframe);
     modalRoot.appendChild(modalBackdrop);
-    modalRoot.appendChild(modalPanel);
     document.body.appendChild(modalRoot);
     document.documentElement.style.overflow = 'hidden';
+
+    // Keep the iframe in place — reparenting reloads cross-origin embeds and resets wizard state.
+    collapseHeroSlot(true);
+    applyModalIframeStyles();
   }
 
   function closeModal() {
@@ -157,11 +161,9 @@
     document.body.removeChild(modalRoot);
     modalRoot = null;
     modalBackdrop = null;
-    modalPanel = null;
     document.documentElement.style.overflow = '';
-    inlineHost.appendChild(iframe);
     applyInlineStyles();
-    setInlineHostCollapsed(false);
+    collapseHeroSlot(false);
   }
 
   applyInlineStyles();
@@ -179,13 +181,8 @@
     if (!data || typeof data !== 'object') return;
 
     if (isEmbedMessageType(data.type, 'overlay')) {
-      if (data.open) {
-        requestAnimationFrame(function () {
-          openModal();
-        });
-      } else {
-        closeModal();
-      }
+      if (data.open) openModal();
+      else closeModal();
       return;
     }
 
