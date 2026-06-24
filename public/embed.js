@@ -99,8 +99,26 @@
     }
   }
 
+  function setInlineHostCollapsed(collapsed) {
+    if (collapsed) {
+      inlineHost.style.visibility = 'hidden';
+      inlineHost.style.height = '0';
+      inlineHost.style.minHeight = '0';
+      inlineHost.style.overflow = 'hidden';
+      container.style.minHeight = '0';
+    } else {
+      inlineHost.style.visibility = '';
+      inlineHost.style.height = '';
+      inlineHost.style.minHeight = '';
+      inlineHost.style.overflow = '';
+      container.style.minHeight = '';
+    }
+  }
+
   function openModal() {
     if (modalRoot) return;
+
+    setInlineHostCollapsed(true);
 
     modalRoot = document.createElement('div');
     modalRoot.id = 'callkudu-embed-modal-root';
@@ -143,6 +161,7 @@
     document.documentElement.style.overflow = '';
     inlineHost.appendChild(iframe);
     applyInlineStyles();
+    setInlineHostCollapsed(false);
   }
 
   applyInlineStyles();
