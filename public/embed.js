@@ -160,8 +160,13 @@
     if (!data || typeof data !== 'object') return;
 
     if (isEmbedMessageType(data.type, 'overlay')) {
-      if (data.open) openModal();
-      else closeModal();
+      if (data.open) {
+        requestAnimationFrame(function () {
+          openModal();
+        });
+      } else {
+        closeModal();
+      }
       return;
     }
 
