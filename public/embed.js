@@ -7,18 +7,18 @@
 
   var appUrl =
     script.getAttribute('data-app-url') ||
-    (tenant === 'uk' ? 'https://app.overtime.talk' : 'https://app.callkudu.co.za');
+    (tenant === 'uk' ? 'https://app.callkudu.com' : 'https://app.callkudu.co.za');
 
-  var targetId = script.getAttribute('data-target') || 'callcaddy-embed';
-  var height = script.getAttribute('data-height') || '64';
+  var targetId = script.getAttribute('data-target') || 'callkudu-embed';
+  var height = script.getAttribute('data-height') || '120';
   var source = script.getAttribute('data-source') || '';
-  var embedBg = 'transparent';
-  var parsedHeight = parseInt(height, 10);
-  if (Number.isNaN(parsedHeight)) parsedHeight = 64;
 
   var container = document.getElementById(targetId);
+  if (!container && targetId === 'callkudu-embed') {
+    container = document.getElementById('callcaddy-embed');
+  }
   if (!container) {
-    console.warn('[CallCaddy embed] Container #' + targetId + ' not found');
+    console.warn('[Call Kudu embed] Container #' + targetId + ' not found');
     return;
   }
 
@@ -31,25 +31,153 @@
   var iframe = document.createElement('iframe');
   iframe.src = appUrl.replace(/\/$/, '') + '/embed?' + params.toString();
   iframe.title = 'Try your AI phone agent';
-  iframe.loading = 'lazy';
   iframe.setAttribute('allow', 'autoplay');
   iframe.style.width = '100%';
   iframe.style.border = '0';
   iframe.style.display = 'block';
-  iframe.style.height = parsedHeight + 'px';
-  iframe.style.minHeight = '64px';
-  iframe.style.maxHeight = '560px';
-  iframe.style.borderRadius = '12px';
-  iframe.style.background = embedBg;
-  iframe.style.transition = 'height 0.2s ease';
+  iframe.style.background = 'transparent';
 
+  // Parent-page modal shell — blurs the marketing site behind the signup wizard.
+  var modalRoot = null;
+  var modalBackdrop = null;
+  var modalPanel = null;
+  var inlineHost = document.createElement('div');
+  inlineHost.style.width = '100%';
+  var popupHeight = 360;
+
+  function postToIframe(message) {
+    if (iframe.contentWindow) {
+      iframe.contentWindow.postMessage(message, '*');
+    }
+  }
+
+  function bindExternalTriggers() {
+    var selector = script.getAttribute('data-external-trigger');
+    if (!selector) return;
+    var nodes = document.querySelectorAll(selector);
+    for (var i = 0; i < nodes.length; i++) {
+      nodes[i].addEventListener('click', function (event) {
+        event.preventDefault();
+        postToIframe({ type: 'callkudu-embed-open-request' });
+      });
+    }
+  }
+
+  window.CallKuduEmbed = {
+    open: function () {
+      postToIframe({ type: 'callkudu-embed-open-request' });
+    },
+    close: function () {
+      postToIframe({ type: 'callkudu-embed-close-request' });
+    },
+  };
+
+  function applyInlineStyles() {
+    iframe.style.position = 'static';
+    iframe.style.top = '';
+    iframe.style.left = '';
+    iframe.style.right = '';
+    iframe.style.bottom = '';
+    iframe.style.width = '100%';
+    iframe.style.height = height + 'px';
+    iframe.style.minHeight = height + 'px';
+    iframe.style.maxHeight = '';
+    iframe.style.zIndex = '';
+    iframe.style.borderRadius = '12px';
+    iframe.style.background = 'transparent';
+    iframe.style.boxShadow = '';
+  }
+
+  function applyModalHeight(nextHeight) {
+    var h = Math.max(280, Math.min(720, parseInt(nextHeight, 10) || popupHeight));
+    popupHeight = h;
+    iframe.style.height = h + 'px';
+    iframe.style.minHeight = h + 'px';
+    iframe.style.maxHeight = 'min(90vh, ' + h + 'px)';
+    if (modalPanel) {
+      modalPanel.style.maxHeight = 'min(90vh, ' + h + 'px)';
+    }
+  }
+
+  function openModal() {
+    if (modalRoot) return;
+
+    modalRoot = document.createElement('div');
+    modalRoot.id = 'callkudu-embed-modal-root';
+    modalRoot.setAttribute('role', 'dialog');
+    modalRoot.setAttribute('aria-modal', 'true');
+    modalRoot.setAttribute('aria-label', 'Try Call Kudu');
+    modalRoot.style.cssText =
+      'position:fixed;inset:0;z-index:2147483646;display:flex;align-items:center;justify-content:center;padding:16px;';
+
+    modalBackdrop = document.createElement('div');
+    modalBackdrop.style.cssText =
+      'position:absolute;inset:0;background:rgba(11,18,33,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);';
+    modalBackdrop.addEventListener('click', function () {
+      postToIframe({ type: 'callkudu-embed-close-request' });
+    });
+
+    modalPanel = document.createElement('div');
+    modalPanel.style.cssText =
+      'position:relative;z-index:1;width:100%;max-width:440px;max-height:min(90vh,720px);border-radius:16px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.45);background:#131C2E;';
+
+    applyModalHeight(popupHeight);
+    iframe.style.position = 'static';
+    iframe.style.width = '100%';
+    iframe.style.borderRadius = '0';
+    iframe.style.background = '#131C2E';
+
+    modalPanel.appendChild(iframe);
+    modalRoot.appendChild(modalBackdrop);
+    modalRoot.appendChild(modalPanel);
+    document.body.appendChild(modalRoot);
+    document.documentElement.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modalRoot) return;
+    document.body.removeChild(modalRoot);
+    modalRoot = null;
+    modalBackdrop = null;
+    modalPanel = null;
+    document.documentElement.style.overflow = '';
+    inlineHost.appendChild(iframe);
+    applyInlineStyles();
+  }
+
+  applyInlineStyles();
+  inlineHost.appendChild(iframe);
   container.innerHTML = '';
-  container.appendChild(iframe);
+  container.appendChild(inlineHost);
+  bindExternalTriggers();
+
+  function isEmbedMessageType(type, suffix) {
+    return type === 'callkudu-embed-' + suffix || type === 'callcaddy-embed-' + suffix;
+  }
 
   window.addEventListener('message', function (event) {
-    if (!event.data || event.data.type !== 'callcaddy-embed-resize') return;
-    var nextHeight = Number(event.data.height);
-    if (!Number.isFinite(nextHeight)) return;
-    iframe.style.height = Math.max(64, Math.min(560, Math.ceil(nextHeight))) + 'px';
+    var data = event.data;
+    if (!data || typeof data !== 'object') return;
+
+    if (isEmbedMessageType(data.type, 'overlay')) {
+      if (data.open) openModal();
+      else closeModal();
+      return;
+    }
+
+    if (isEmbedMessageType(data.type, 'close-request')) {
+      closeModal();
+      return;
+    }
+
+    if (isEmbedMessageType(data.type, 'resize') && data.height) {
+      var h = Math.max(80, parseInt(data.height, 10) || 0);
+      if (!modalRoot) {
+        iframe.style.height = h + 'px';
+        iframe.style.minHeight = h + 'px';
+      } else {
+        applyModalHeight(h);
+      }
+    }
   });
 })();
