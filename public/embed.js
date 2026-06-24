@@ -151,7 +151,8 @@
     document.body.appendChild(modalRoot);
     document.documentElement.style.overflow = 'hidden';
 
-    // Keep the iframe in place — reparenting reloads cross-origin embeds and resets wizard state.
+    // Lift iframe to <body> so it escapes hero stacking contexts and sits above the blur.
+    document.body.appendChild(iframe);
     collapseHeroSlot(true);
     applyModalIframeStyles();
   }
@@ -162,6 +163,7 @@
     modalRoot = null;
     modalBackdrop = null;
     document.documentElement.style.overflow = '';
+    inlineHost.appendChild(iframe);
     applyInlineStyles();
     collapseHeroSlot(false);
   }
