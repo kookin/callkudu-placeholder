@@ -42,7 +42,7 @@
   var modalBackdrop = null;
   var inlineHost = document.createElement('div');
   inlineHost.style.width = '100%';
-  var popupHeight = 360;
+  var popupHeight = 420;
 
   function postToIframe(message) {
     if (iframe.contentWindow) {
@@ -107,10 +107,10 @@
     iframe.style.bottom = 'auto';
     iframe.style.transform = 'translate(-50%, -50%)';
     iframe.style.width = 'calc(100% - 32px)';
-    iframe.style.maxWidth = '440px';
+    iframe.style.maxWidth = '480px';
     iframe.style.zIndex = '2147483647';
-    iframe.style.borderRadius = '16px';
-    iframe.style.background = '#131C2E';
+    iframe.style.borderRadius = '20px';
+    iframe.style.background = '#FAF8F5';
     iframe.style.boxShadow = '0 24px 80px rgba(0,0,0,0.45)';
     iframe.style.overflow = 'hidden';
     iframe.style.pointerEvents = 'auto';
