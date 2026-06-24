@@ -113,6 +113,7 @@
     iframe.style.background = '#131C2E';
     iframe.style.boxShadow = '0 24px 80px rgba(0,0,0,0.45)';
     iframe.style.overflow = 'hidden';
+    iframe.style.pointerEvents = 'auto';
   }
 
   function collapseHeroSlot(collapsed) {
@@ -144,7 +145,7 @@
     modalBackdrop.style.cssText =
       'position:absolute;inset:0;background:rgba(11,18,33,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);pointer-events:auto;';
     modalBackdrop.addEventListener('click', function () {
-      postToIframe({ type: 'callkudu-embed-close-request' });
+      handleParentCloseRequest();
     });
 
     modalRoot.appendChild(modalBackdrop);
@@ -158,14 +159,22 @@
   }
 
   function closeModal() {
-    if (!modalRoot) return;
-    document.body.removeChild(modalRoot);
+    if (modalRoot && modalRoot.parentNode) {
+      modalRoot.parentNode.removeChild(modalRoot);
+    }
     modalRoot = null;
     modalBackdrop = null;
     document.documentElement.style.overflow = '';
-    inlineHost.appendChild(iframe);
+    if (iframe.parentNode !== inlineHost) {
+      inlineHost.appendChild(iframe);
+    }
     applyInlineStyles();
     collapseHeroSlot(false);
+  }
+
+  function handleParentCloseRequest() {
+    closeModal();
+    postToIframe({ type: 'callkudu-embed-close-request' });
   }
 
   applyInlineStyles();
@@ -181,6 +190,7 @@
   window.addEventListener('message', function (event) {
     var data = event.data;
     if (!data || typeof data !== 'object') return;
+    if (iframe.contentWindow && event.source !== iframe.contentWindow) return;
 
     if (isEmbedMessageType(data.type, 'overlay')) {
       if (data.open) openModal();
