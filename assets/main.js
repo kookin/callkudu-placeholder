@@ -197,5 +197,4 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initMobileNav();
   initSampleCarousel();
-  initPilotModal();
 });
