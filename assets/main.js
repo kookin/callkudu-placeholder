@@ -37,10 +37,7 @@ function initAudioPlayers() {
             otherAudio.currentTime = 0;
           }
         });
-        audio.play().catch(() => {
-          playingId = null;
-          updateAudioUI();
-        });
+        audio.play();
         playingId = id;
       }
       updateAudioUI();
@@ -63,7 +60,6 @@ function updateAudioUI() {
     bars?.classList.toggle('playing', playing);
     playIcon?.classList.toggle('hidden', playing);
     pauseIcon?.classList.toggle('hidden', !playing);
-    card.querySelector('[data-audio-id]')?.setAttribute('aria-pressed', playing ? 'true' : 'false');
   });
 }
 
@@ -71,24 +67,28 @@ function initFaq() {
   document.querySelectorAll('[data-faq-toggle]').forEach((btn) => {
     btn.addEventListener('click', () => {
       const item = btn.closest('[data-faq-item]');
+      const panel = item?.querySelector('[data-faq-panel]');
       const icon = btn.querySelector('[data-faq-icon]');
       const isOpen = item?.classList.contains('open');
 
       document.querySelectorAll('[data-faq-item].open').forEach((openItem) => {
         if (openItem !== item) {
           openItem.classList.remove('open');
-          openItem.querySelector('[data-faq-toggle]')?.setAttribute('aria-expanded', 'false');
+          openItem.querySelector('[data-faq-panel]')?.classList.add('max-h-0');
+          openItem.querySelector('[data-faq-panel]')?.classList.remove('max-h-96');
           openItem.querySelector('[data-faq-icon]')?.classList.remove('rotate-180');
         }
       });
 
       if (isOpen) {
         item.classList.remove('open');
-        btn.setAttribute('aria-expanded', 'false');
+        panel?.classList.add('max-h-0');
+        panel?.classList.remove('max-h-96');
         icon?.classList.remove('rotate-180');
       } else {
         item?.classList.add('open');
-        btn.setAttribute('aria-expanded', 'true');
+        panel?.classList.remove('max-h-0');
+        panel?.classList.add('max-h-96');
         icon?.classList.add('rotate-180');
       }
     });
@@ -101,29 +101,18 @@ function initMobileNav() {
   const iconOpen = document.getElementById('menuIconOpen');
   const iconClose = document.getElementById('menuIconClose');
 
-  const setOpen = (open) => {
-    menu?.classList.toggle('hidden', !open);
+  toggle?.addEventListener('click', () => {
+    const open = menu?.classList.toggle('hidden') === false;
     iconOpen?.classList.toggle('hidden', open);
     iconClose?.classList.toggle('hidden', !open);
-    toggle?.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.classList.toggle('nav-open', open);
-  };
-
-  toggle?.addEventListener('click', () => {
-    const open = menu?.classList.contains('hidden');
-    setOpen(Boolean(open));
   });
 
-  menu?.querySelectorAll('a').forEach((el) => {
-    el.addEventListener('click', () => setOpen(false));
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') setOpen(false);
-  });
-
-  window.addEventListener('resize', () => {
-    if (window.matchMedia('(min-width: 768px)').matches) setOpen(false);
+  menu?.querySelectorAll('a, button[data-close-menu]').forEach((el) => {
+    el.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+    });
   });
 }
 
@@ -132,28 +121,13 @@ function initSampleCarousel() {
   const dots = document.querySelectorAll('[data-sample-dot]');
   if (!container || !dots.length) return;
 
-  const cards = Array.from(container.querySelectorAll('[data-audio-card]'));
-
   const updateDots = () => {
-    if (!cards.length) return;
-    const center = container.scrollLeft + container.clientWidth / 2;
-    let nearest = 0;
-    let nearestDist = Infinity;
-    cards.forEach((card, i) => {
-      const mid = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(mid - center);
-      if (dist < nearestDist) {
-        nearestDist = dist;
-        nearest = i;
-      }
-    });
+    const index = Math.round(container.scrollLeft / container.offsetWidth);
     dots.forEach((dot, i) => {
-      const active = i === nearest;
-      dot.classList.toggle('w-8', active);
-      dot.classList.toggle('bg-primary-500', active);
-      dot.classList.toggle('w-2', !active);
-      dot.classList.toggle('bg-white/20', !active);
-      dot.setAttribute('aria-current', active ? 'true' : 'false');
+      dot.classList.toggle('w-8', i === index);
+      dot.classList.toggle('bg-primary-500', i === index);
+      dot.classList.toggle('w-2', i !== index);
+      dot.classList.toggle('bg-white/20', i !== index);
     });
   };
 
@@ -161,16 +135,61 @@ function initSampleCarousel() {
   dots.forEach((dot) => {
     dot.addEventListener('click', () => {
       const index = Number(dot.dataset.sampleDot);
-      const card = cards[index];
-      if (!card) return;
-      container.scrollTo({
-        left: card.offsetLeft - (container.clientWidth - card.offsetWidth) / 2,
-        behavior: 'smooth',
-      });
+      container.scrollTo({ left: container.offsetWidth * index, behavior: 'smooth' });
     });
   });
+}
 
-  updateDots();
+function initPilotModal() {
+  const overlay = document.getElementById('pilotModal');
+  const form = document.getElementById('pilotForm');
+  const msg = document.getElementById('pilotMessage');
+  const btn = document.getElementById('pilotSubmitBtn');
+
+  window.showPilotModal = () => {
+    overlay?.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.hidePilotModal = (e) => {
+    if (e && e.target !== overlay && e.type === 'click') return;
+    overlay?.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('[data-open-pilot]').forEach((el) => {
+    el.addEventListener('click', () => window.showPilotModal());
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Submitting...';
+    msg.className = 'hidden';
+
+    try {
+      const res = await fetch('/api/pilot-signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+        }),
+      });
+      const result = await res.json();
+      if (!res.ok) throw new Error(result.error || 'Something went wrong');
+
+      msg.textContent = "Thanks for your interest! We'll be in touch soon.";
+      msg.className = 'mt-4 rounded-lg bg-brandgreen-500/10 px-4 py-3 text-sm text-brandgreen-400';
+      form.reset();
+    } catch (err) {
+      msg.textContent = err.message || 'Failed to submit. Please email support@callkudu.co.za.';
+      msg.className = 'mt-4 rounded-lg bg-red-500/10 px-4 py-3 text-sm text-red-400';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Submit Interest';
+    }
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
