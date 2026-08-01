@@ -18,68 +18,69 @@
   <link rel="icon" href="/callkudu-favicon-32.png" type="image/png" sizes="32x32" />
   <link rel="icon" href="/callkudu-favicon-16.png" type="image/png" sizes="16x16" />
   <link rel="apple-touch-icon" href="/callkudu-favicon-45.png" sizes="45x45" />
-  <script type="module" crossorigin src="/assets/main-DoyqRUWo.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-EuTZRpFQ.css">
+  <script type="module" crossorigin src="/assets/main-Cg0XY8hk.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DfkFOTpY.css">
 </head>
 <body class="bg-navy-950 text-cream-50 antialiased selection:bg-primary-500/30 selection:text-orange-100">
 
   <!-- Navigation -->
-  <nav class="relative z-20 mx-auto flex w-full max-w-7xl items-center justify-between border-b border-white/5 px-6 py-6 lg:px-12">
-    <a href="/" class="flex items-center">
-      <img src="/callkudu-logo-dark-mode.png" alt="Call Kudu" class="h-12 w-auto cursor-pointer transition-opacity hover:opacity-80 md:h-14" />
-    </a>
-
-    <div class="hidden items-center gap-8 text-sm font-medium text-cream-500 md:flex">
-      <a href="#features" class="transition-colors hover:text-cream-50">Features</a>
-      <a href="#samples" class="transition-colors hover:text-cream-50">Demos</a>
-      <a href="#pricing" class="transition-colors hover:text-cream-50">Pricing</a>
-      <a href="#faq" class="transition-colors hover:text-cream-50">FAQ</a>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <a href="https://app.callkudu.co.za" class="hidden items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-cream-50 transition-all hover:bg-white/10 md:flex group">
-        Login
-        <svg class="h-4 w-4 text-cream-500 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+  <nav class="sticky top-0 z-40 border-b border-white/5 bg-navy-950/95 backdrop-blur-md">
+    <div class="relative mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
+      <a href="/" class="flex items-center">
+        <img src="/callkudu-logo-dark-mode.png" alt="Call Kudu" class="h-11 w-auto transition-opacity hover:opacity-80 md:h-12" />
       </a>
-      <button data-open-pilot class="hidden rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-primary-500/25 transition-colors hover:bg-primary-600 md:inline-flex">
-        Join Pilot
-      </button>
-      <button id="mobileMenuToggle" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream-50 transition-all hover:bg-white/10 md:hidden" aria-label="Toggle menu">
-        <svg id="menuIconOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        <svg id="menuIconClose" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </div>
 
-    <div id="mobileMenu" class="absolute left-0 right-0 top-full mt-4 hidden border-y border-white/10 bg-navy-900 shadow-xl md:hidden">
-      <div class="space-y-1 px-6 py-4">
-        <a href="#features" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Features</a>
-        <a href="#samples" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Demos</a>
-        <a href="#pricing" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Pricing</a>
-        <a href="#faq" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">FAQ</a>
-        <div class="space-y-2 border-t border-white/10 pt-4">
-          <a href="https://app.callkudu.co.za" class="flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-cream-50">Login</a>
-          <button data-open-pilot data-close-menu class="w-full rounded-full bg-primary-500 py-3 text-sm font-semibold text-white">Join Pilot</button>
+      <div class="hidden items-center gap-8 text-sm font-medium text-cream-500 md:flex">
+        <a href="#getting-started" class="transition-colors hover:text-cream-50">Getting started</a>
+        <a href="#features" class="transition-colors hover:text-cream-50">Features</a>
+        <a href="#samples" class="transition-colors hover:text-cream-50">Voice</a>
+        <a href="#whatsapp" class="transition-colors hover:text-cream-50">WhatsApp</a>
+        <a href="#pricing" class="transition-colors hover:text-cream-50">Pricing</a>
+        <a href="#faq" class="transition-colors hover:text-cream-50">FAQ</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a href="https://app.callkudu.co.za" class="btn-nav hidden border border-white/10 bg-white/5 text-cream-50 hover:bg-white/10 md:inline-flex">
+          Login
+        </a>
+        <a href="#get-started" class="btn-nav hidden bg-primary-500 font-semibold text-white hover:bg-primary-600 md:inline-flex">
+          Get started
+        </a>
+        <button id="mobileMenuToggle" type="button" class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-cream-50 transition-colors hover:bg-white/10 md:hidden" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg id="menuIconOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="menuIconClose" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <div id="mobileMenu" class="absolute inset-x-0 top-full hidden border-b border-white/10 bg-navy-950 md:hidden">
+        <div class="space-y-1 px-6 py-4">
+          <a href="#getting-started" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Getting started</a>
+          <a href="#features" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Features</a>
+          <a href="#samples" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Voice</a>
+          <a href="#whatsapp" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">WhatsApp</a>
+          <a href="#pricing" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Pricing</a>
+          <a href="#faq" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">FAQ</a>
+          <div class="space-y-2 border-t border-white/10 pt-4">
+            <a href="https://app.callkudu.co.za" class="btn-secondary w-full">Login</a>
+            <a href="#get-started" class="btn-primary w-full">Get started</a>
+          </div>
         </div>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="relative mx-auto max-w-7xl px-6 pb-32 pt-12 lg:px-12">
-    <div class="pointer-events-none absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary-500/20 opacity-30 blur-[120px]"></div>
-
-    <div class="relative z-10 mb-16 flex flex-col items-center text-center">
-
-      <h1 class="text-gradient mb-6 max-w-4xl text-5xl font-medium leading-[1.2] tracking-tighter md:text-7xl">
-        Your own AI receptionist. Simple, Customizable, Clever.
+  <header class="relative mx-auto max-w-7xl overflow-x-clip px-6 pb-16 pt-10 lg:px-12 lg:pb-24">
+    <div class="relative z-10 mb-10 flex flex-col items-center text-center">
+      <h1 class="font-display mb-5 max-w-4xl text-4xl font-semibold leading-[1.15] tracking-tight text-cream-50 sm:text-5xl md:text-7xl">
+        Your smart virtual receptionist.
       </h1>
 
-      <p class="mb-10 max-w-2xl text-lg font-normal leading-relaxed text-cream-500">
-        Call Kudu picks up phonecalls when you're too busy, books your customers in, answers their questions and sends information. It then makes sure you're in the loop.
+      <p class="mb-8 max-w-2xl text-lg font-normal leading-relaxed text-cream-500 md:text-xl">
+        Answers every call and WhatsApp when you’re busy — books, answers questions, and keeps you in the loop.
       </p>
 
-      <!-- Business search -->
-      <div class="hero-embed mx-auto w-full max-w-3xl">
+      <div id="get-started" class="hero-embed mx-auto w-full max-w-3xl scroll-mt-28">
         <div id="callkudu-embed"></div>
       </div>
       <script
@@ -90,27 +91,28 @@
         data-theme="dark"
         data-height="140"
       ></script>
+
+      <p class="mt-5 text-sm text-cream-500/80">
+        Keep your existing number. No technical skills required.
+      </p>
     </div>
 
-    <!-- Phone mockup -->
-    <div class="relative mx-auto mt-12 flex min-h-[600px] w-full max-w-5xl items-center justify-center">
-      <div class="absolute inset-0 -z-10 rounded-full bg-gradient-to-b from-navy-900/0 via-navy-800/30 to-navy-900/0 blur-3xl"></div>
+    <!-- Phone mockup + conversation (stacked on mobile, side bubbles on md+) -->
+    <div class="relative mx-auto mt-10 flex w-full max-w-5xl flex-col items-center gap-4 md:mt-12 md:block md:min-h-[620px]">
+      <div class="relative z-20 flex h-[520px] w-[280px] flex-col overflow-hidden rounded-[40px] border-[7px] border-navy-850 bg-navy-950 shadow-xl ring-1 ring-white/10 sm:h-[560px] sm:w-[300px] md:absolute md:left-1/2 md:top-0 md:h-[640px] md:w-[320px] md:-translate-x-1/2 md:rounded-[48px] md:border-[8px] md:float-slow">
+        <div class="absolute left-1/2 top-0 z-30 h-7 w-28 -translate-x-1/2 rounded-b-2xl bg-black" aria-hidden="true"></div>
+        <div class="absolute left-[-10px] top-24 hidden h-8 w-[3px] rounded-l-md bg-navy-800 md:block" aria-hidden="true"></div>
+        <div class="absolute left-[-10px] top-36 hidden h-14 w-[3px] rounded-l-md bg-navy-800 md:block" aria-hidden="true"></div>
+        <div class="absolute right-[-10px] top-28 hidden h-20 w-[3px] rounded-r-md bg-navy-800 md:block" aria-hidden="true"></div>
 
-      <div class="float-slow relative z-20 flex h-[640px] w-[300px] flex-col overflow-hidden rounded-[48px] border-[8px] border-navy-850 bg-navy-950 shadow-2xl ring-1 ring-white/10 md:w-[320px]">
-        <div class="absolute left-1/2 top-0 z-30 h-7 w-28 -translate-x-1/2 rounded-b-2xl bg-black"></div>
-        <div class="absolute left-[-10px] top-24 h-8 w-[3px] rounded-l-md bg-navy-800"></div>
-        <div class="absolute left-[-10px] top-36 h-14 w-[3px] rounded-l-md bg-navy-800"></div>
-        <div class="absolute right-[-10px] top-28 h-20 w-[3px] rounded-r-md bg-navy-800"></div>
-
-        <div class="relative flex flex-1 flex-col items-center bg-gradient-to-b from-navy-900 to-navy-950 px-6 pb-12 pt-24">
-          <div class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-primary-500/10 blur-3xl"></div>
+        <div class="relative flex flex-1 flex-col items-center bg-navy-900 px-6 pb-12 pt-24">
           <div class="relative z-10 w-full space-y-3 text-center">
             <h3 class="text-2xl font-semibold leading-tight tracking-tight text-white">Rosebank Florist</h3>
             <p class="text-sm font-medium tracking-wide text-cream-500/80">New Customer Calling...</p>
           </div>
           <div class="mt-4 font-mono text-xs tracking-widest text-cream-500/60">00:12</div>
           <div class="flex flex-1 items-center justify-center">
-            <div class="flex h-12 items-center gap-1.5">
+            <div class="flex h-12 items-center gap-1.5" aria-hidden="true">
               <div class="h-4 w-1.5 animate-[wave_1.2s_ease-in-out_infinite] rounded-full bg-white/20"></div>
               <div class="h-8 w-1.5 animate-[wave_0.8s_ease-in-out_infinite] rounded-full bg-white/40"></div>
               <div class="h-12 w-1.5 animate-[wave_1.1s_ease-in-out_infinite] rounded-full bg-white"></div>
@@ -120,12 +122,12 @@
           </div>
           <div class="relative z-10 w-full space-y-6">
             <div class="grid w-full grid-cols-3 gap-4 px-2">
-              <div class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-white/5 text-cream-500 backdrop-blur-sm transition-colors hover:bg-white/10"><span class="text-[10px] font-medium tracking-wide">mute</span></div>
-              <div class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-white/5 text-cream-500 backdrop-blur-sm transition-colors hover:bg-white/10"><span class="text-[10px] font-medium tracking-wide">keypad</span></div>
-              <div class="flex aspect-square cursor-pointer flex-col items-center justify-center gap-1 rounded-full bg-white text-navy-950 shadow-lg shadow-white/5 transition-colors hover:bg-cream-100"><span class="text-[10px] font-medium tracking-wide">speaker</span></div>
+              <div class="flex aspect-square flex-col items-center justify-center gap-1 rounded-full bg-white/5 text-cream-500"><span class="text-[10px] font-medium tracking-wide">mute</span></div>
+              <div class="flex aspect-square flex-col items-center justify-center gap-1 rounded-full bg-white/5 text-cream-500"><span class="text-[10px] font-medium tracking-wide">keypad</span></div>
+              <div class="flex aspect-square flex-col items-center justify-center gap-1 rounded-full bg-white text-navy-950"><span class="text-[10px] font-medium tracking-wide">speaker</span></div>
             </div>
             <div class="flex justify-center">
-              <div class="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-red-500/90 shadow-lg shadow-red-500/20 transition-all hover:scale-105 hover:bg-red-500">
+              <div class="flex h-16 w-16 items-center justify-center rounded-full bg-red-500/90" aria-hidden="true">
                 <svg class="h-8 w-8 fill-current text-white" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M10.1 13.9a14 14 0 0 0 3.732 2.668 1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2 18 18 0 0 1-12.728-5.272"/><path d="M22 2 2 22"/></svg>
               </div>
             </div>
@@ -133,106 +135,118 @@
         </div>
       </div>
 
-      <!-- Chat bubbles -->
-      <div class="msg-bubble delay-1 absolute left-3 right-3 top-[15%] z-30 w-auto md:left-[2%] md:right-auto md:top-[25%] md:max-w-[340px] lg:left-[8%]">
-        <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-navy-800/90 p-3 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-primary-500/30 md:rounded-2xl md:p-5">
-          <div class="relative z-10 flex items-start gap-2 md:gap-4">
-            <div class="relative shrink-0">
-              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 shadow-lg shadow-primary-500/20 ring-1 ring-white/10 md:h-12 md:w-12 md:ring-2">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" alt="AI assistant" class="h-full w-full rounded-full object-cover opacity-90" />
+      <div class="flex w-full max-w-md flex-col gap-3 px-1 md:contents">
+        <div class="msg-bubble delay-1 z-30 w-full md:absolute md:left-[2%] md:top-[25%] md:max-w-[340px] lg:left-[8%]">
+          <div class="rounded-2xl border border-white/10 bg-navy-800 p-4 md:p-5">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="relative shrink-0">
+                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary-500 md:h-11 md:w-11">
+                  <span class="text-xs font-bold tracking-tight text-white md:text-sm">CK</span>
+                </div>
+                <div class="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-navy-800 bg-brandgreen-500" aria-hidden="true"></div>
               </div>
-              <div class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-navy-800 bg-brandgreen-500 md:-bottom-1 md:-right-1 md:h-4 md:w-4"></div>
-            </div>
-            <div class="min-w-0 flex-1">
-              <span class="mb-1.5 block text-xs font-bold text-primary-400 md:mb-2 md:text-sm">AI Assistant</span>
-              <p class="text-sm font-medium leading-relaxed text-white md:text-xl">"Hi, Rosebank Florist, I'm Thandi the AI assistant, how can I help?"</p>
+              <div class="min-w-0 flex-1">
+                <span class="mb-1 block text-xs font-semibold text-primary-400 md:text-sm">Your receptionist</span>
+                <p class="text-sm font-medium leading-relaxed text-white md:text-base">“Hi, thank you for calling Rosebank Florist. How can I help you today?”</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="msg-bubble delay-2 absolute left-3 right-3 top-[35%] z-30 w-auto md:left-auto md:right-[2%] md:top-[45%] md:max-w-[340px] lg:right-[8%]">
-        <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-cream-50/10 p-3 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-white/20 md:rounded-2xl md:p-5">
-          <div class="relative z-10 flex items-start gap-2 md:flex-row-reverse md:gap-4">
-            <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-navy-700 md:h-12 md:w-12"><span class="text-sm font-medium text-cream-200 md:text-lg">S</span></div>
-            <div class="min-w-0 flex-1 md:text-right">
-              <span class="mb-1.5 block text-xs font-bold text-cream-200 md:mb-2 md:text-sm">Samantha</span>
-              <p class="text-sm font-medium leading-relaxed text-white md:text-xl">"Hi, do you do weddings? We're getting married next year."</p>
+        <div class="msg-bubble delay-2 z-30 w-full md:absolute md:right-[2%] md:top-[45%] md:max-w-[340px] lg:right-[8%]">
+          <div class="rounded-2xl border border-white/10 bg-navy-850 p-4 md:p-5">
+            <div class="flex items-start gap-3 md:flex-row-reverse md:gap-4">
+              <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-navy-700 md:h-11 md:w-11">
+                <span class="text-xs font-semibold text-cream-100 md:text-sm">S</span>
+              </div>
+              <div class="min-w-0 flex-1 md:text-right">
+                <span class="mb-1 block text-xs font-semibold text-cream-200 md:text-sm">Samantha</span>
+                <p class="text-sm font-medium leading-relaxed text-white md:text-base">“Hi, do you do weddings? We’re getting married next year.”</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="msg-bubble delay-3 absolute left-3 right-3 top-[55%] z-30 w-auto md:left-[2%] md:right-auto md:top-[60%] md:max-w-[340px] lg:left-[8%]">
-        <div class="group relative overflow-hidden rounded-xl border border-white/10 bg-navy-800/90 p-3 shadow-2xl backdrop-blur-xl transition-colors duration-300 hover:border-primary-500/30 md:rounded-2xl md:p-5">
-          <div class="relative z-10 flex items-start gap-2 md:gap-4">
-            <div class="relative shrink-0">
-              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-500 shadow-lg shadow-primary-500/20 ring-1 ring-white/10 md:h-12 md:w-12 md:ring-2">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop" alt="AI assistant" class="h-full w-full rounded-full object-cover opacity-90" />
+        <div class="msg-bubble delay-3 z-30 w-full md:absolute md:left-[2%] md:top-[60%] md:max-w-[340px] lg:left-[8%]">
+          <div class="rounded-2xl border border-white/10 bg-navy-800 p-4 md:p-5">
+            <div class="flex items-start gap-3 md:gap-4">
+              <div class="relative shrink-0">
+                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary-500 md:h-11 md:w-11">
+                  <span class="text-xs font-bold tracking-tight text-white md:text-sm">CK</span>
+                </div>
+                <div class="absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-navy-800 bg-brandgreen-500" aria-hidden="true"></div>
               </div>
-              <div class="absolute -bottom-0.5 -right-0.5 flex h-3 w-3 items-center justify-center rounded-full border-2 border-navy-800 bg-brandgreen-500 md:-bottom-1 md:-right-1 md:h-4 md:w-4"></div>
-            </div>
-            <div class="min-w-0 flex-1">
-              <span class="mb-1.5 block text-xs font-bold text-primary-400 md:mb-2 md:text-sm">AI Assistant</span>
-              <p class="text-sm font-medium leading-relaxed text-white md:text-xl">"Congratulations! Absolutely we do—we'd love to book you in for a consultation."</p>
+              <div class="min-w-0 flex-1">
+                <span class="mb-1 block text-xs font-semibold text-primary-400 md:text-sm">Your receptionist</span>
+                <p class="text-sm font-medium leading-relaxed text-white md:text-base">“Congratulations! Absolutely we do — we’d love to book you in for a consultation.”</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+
   </header>
 
-  <!-- Features -->
-  <section id="features" class="border-t border-white/5 bg-navy-900 px-6 py-16 text-cream-50 sm:py-24 lg:px-12">
+  <!-- Getting started -->
+  <section id="getting-started" class="border-t border-white/5 bg-navy-900 px-6 py-16 sm:py-20 lg:px-12">
     <div class="mx-auto max-w-7xl">
-      <div class="mb-12 grid items-end gap-8 md:mb-16 md:grid-cols-2 md:gap-12">
-        <h2 class="text-[2.5rem] font-medium leading-[1.1] tracking-tighter sm:text-5xl md:leading-[1.05]">
-          Everything you need to <span class="text-cream-500">automate your phone lines.</span>
+      <div class="mb-12 max-w-2xl">
+        <p class="section-eyebrow">Getting started</p>
+        <h2 class="section-title">Three steps to go live.</h2>
+        <p class="mt-4 text-base leading-relaxed text-cream-500">
+          No technical skills required. Preview with your business name, follow a short guided setup, and turn your receptionist on.
+        </p>
+      </div>
+      <ol class="grid gap-6 md:grid-cols-3">
+        <li class="surface-card bg-navy-950 p-6 sm:p-8">
+          <span class="mb-4 block font-display text-4xl font-semibold text-primary-400">1</span>
+          <h3 class="mb-2 text-lg font-semibold text-cream-50">Preview your business</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Search your name above and hear how callers and WhatsApp customers are greeted — in under a minute.</p>
+        </li>
+        <li class="surface-card bg-navy-950 p-6 sm:p-8">
+          <span class="mb-4 block font-display text-4xl font-semibold text-primary-400">2</span>
+          <h3 class="mb-2 text-lg font-semibold text-cream-50">Set up your receptionist</h3>
+          <p class="text-sm leading-relaxed text-cream-500">We’ll walk you through your number, voice, and a few details about how you work. Plain language — no IT needed.</p>
+        </li>
+        <li class="surface-card bg-navy-950 p-6 sm:p-8">
+          <span class="mb-4 block font-display text-4xl font-semibold text-primary-400">3</span>
+          <h3 class="mb-2 text-lg font-semibold text-cream-50">Go live</h3>
+          <p class="text-sm leading-relaxed text-cream-500">Forward your existing line when you’re busy, connect WhatsApp if you want, and switch the receptionist on.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Features / jobs -->
+  <section id="features" class="border-t border-white/5 bg-navy-950 px-6 py-16 text-cream-50 sm:py-24 lg:px-12">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-12 max-w-2xl md:mb-16">
+        <p class="section-eyebrow">Why Call Kudu</p>
+        <h2 class="section-title">
+          Built for the busy hours.
         </h2>
-        <p class="max-w-sm text-base font-normal leading-relaxed text-cream-500 sm:text-lg md:pt-8">
-          Handle peak times, after-hours calls, and spam without lifting a finger.
+        <p class="mt-4 text-base leading-relaxed text-cream-500 md:text-lg">
+          Not another voicemail. A front desk that answers, books, and hands over when a human is needed.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
-            <svg class="h-5 w-5 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-4-6a4 4 0 1 1 8 0c0 2-2 3.33-4 6z"/><path d="M12 12v10"/></svg>
-          </div>
-          <h3 class="mb-2 text-base font-medium tracking-tight">Unlimited Minutes &amp; 24/7 Answering</h3>
-          <p class="text-sm leading-relaxed text-cream-500">Every customer gets a professional answer—day, night, and weekends.</p>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="flex min-h-[200px] flex-col surface-card p-6 sm:p-8">
+          <h3 class="mb-3 text-xl font-semibold tracking-tight">Always there when you’re busy</h3>
+          <p class="text-sm leading-relaxed text-cream-500 md:text-base">Phone and WhatsApp answered professionally — day, night, and weekends — so customers don’t bounce to a competitor.</p>
         </div>
-
-        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
-            <svg class="h-5 w-5 text-cream-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h3 class="mb-2 text-base font-medium tracking-tight">Track Follow Ups</h3>
-          <p class="text-sm leading-relaxed text-cream-500">Keep track of call back requests, messages and appointments</p>
+        <div class="flex min-h-[200px] flex-col surface-card p-6 sm:p-8">
+          <h3 class="mb-3 text-xl font-semibold tracking-tight">Book without the back-and-forth</h3>
+          <p class="text-sm leading-relaxed text-cream-500 md:text-base">Connect your calendar or send a booking link. Callers and chatters can lock in a time while you stay focused on the floor.</p>
         </div>
-
-        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
-            <svg class="h-5 w-5 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m9 16 2 2 4-4"/></svg>
-          </div>
-          <h3 class="mb-2 text-base font-medium tracking-tight">Book jobs directly</h3>
-          <p class="text-sm leading-relaxed text-cream-500">Connects to your calendar and books appointments straight into your diary.</p>
+        <div class="flex min-h-[200px] flex-col surface-card p-6 sm:p-8">
+          <h3 class="mb-3 text-xl font-semibold tracking-tight">Stay in the loop</h3>
+          <p class="text-sm leading-relaxed text-cream-500 md:text-base">Follow-ups, messages, and callbacks land in one place. Escalate complex calls to your mobile the moment a person is needed.</p>
         </div>
-
-        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
-            <svg class="h-5 w-5 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <h3 class="mb-2 text-base font-medium tracking-tight">In-call Actions &amp; Texting</h3>
-          <p class="text-sm leading-relaxed text-cream-500">Send payment links or forms to callers by text during the conversation.</p>
-        </div>
-
-        <div class="flex min-h-[220px] flex-col rounded-2xl border border-white/10 bg-navy-950 p-5 sm:rounded-3xl sm:p-6">
-          <div class="mb-4 flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-navy-900">
-            <svg class="h-5 w-5 text-cream-50" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 11V6a2 2 0 0 0-2-2 4 4 0 0 0-4 4v1"/><path d="M14 10V4a2 2 0 0 0-2-2 4 4 0 0 0-4 4v2"/><path d="M4 11v1a8 8 0 0 0 16 0v-1"/><path d="M10 21v-2a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v2"/></svg>
-          </div>
-          <h3 class="mb-2 text-base font-medium tracking-tight">Seamless Human Handover</h3>
-          <p class="text-sm leading-relaxed text-cream-500">Complex calls patch through to your mobile the moment a human is needed.</p>
+        <div class="flex min-h-[200px] flex-col surface-card p-6 sm:p-8">
+          <h3 class="mb-3 text-xl font-semibold tracking-tight">Sounds like your front desk</h3>
+          <p class="text-sm leading-relaxed text-cream-500 md:text-base">Train it on your business, pick a South African voice and tone, and greet callers the way you would — not like a call centre script.</p>
         </div>
       </div>
     </div>
@@ -241,103 +255,99 @@
   <!-- Samples / Demos -->
   <section id="samples" class="border-t border-white/5 bg-navy-950 px-6 py-16 sm:py-24 lg:px-12">
     <div class="mx-auto max-w-7xl">
-      <div class="mb-12 text-center sm:mb-16">
-        <h2 class="mb-4 text-3xl font-medium tracking-tighter text-white md:text-5xl">Hear Call Kudu in action</h2>
-        <p class="text-base text-cream-500 sm:text-lg">Real conversations handled by our AI assistants.</p>
+      <div class="mb-12 max-w-2xl sm:mb-16">
+        <p class="section-eyebrow">Voice</p>
+        <h2 class="section-title">Hear it in action</h2>
       </div>
 
-      <div id="samplesScroll" class="-mx-6 flex snap-x snap-mandatory gap-6 overflow-x-auto px-6 scrollbar-hide md:mx-0 md:grid md:grid-cols-2 md:overflow-visible md:px-0 lg:grid-cols-4">
-        <!-- Lead Qualification -->
-        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="1">
-          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-rose-500/20 bg-rose-500/10 text-rose-400">
-                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+      <div id="samplesScroll" class="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 scrollbar-hide md:mx-0 md:grid md:grid-cols-2 md:gap-6 md:overflow-visible md:px-0 lg:grid-cols-4">
+        <div class="w-[min(85vw,22rem)] shrink-0 snap-center md:w-auto" data-audio-card="1">
+          <div class="flex h-full flex-col gap-6 surface-card p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex min-w-0 items-center gap-3">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
                 </div>
-                <span class="font-medium text-cream-50">Lead Qualification</span>
+                <span class="truncate font-medium text-cream-50">Lead qualification</span>
               </div>
-              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Screening</span>
+              <span class="shrink-0 rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Screening</span>
             </div>
-            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-rose-400" data-audio-bars>
+            <div class="flex h-16 items-center justify-center gap-1 text-primary-400 opacity-80" data-audio-bars aria-hidden="true">
               <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
             </div>
             <div class="flex items-center justify-center border-t border-white/5 pt-4">
-              <button data-audio-id="1" class="flex h-12 w-12 items-center justify-center rounded-full bg-rose-500 text-white shadow-lg shadow-rose-500/20 transition-all hover:bg-rose-400 group-hover:scale-105">
-                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <button type="button" data-audio-id="1" class="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white transition-colors hover:bg-primary-600" aria-label="Play lead qualification sample" aria-pressed="false">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Appointment Booking -->
-        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="2">
-          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-blue-500/20 bg-blue-500/10 text-blue-400">
-                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+        <div class="w-[min(85vw,22rem)] shrink-0 snap-center md:w-auto" data-audio-card="2">
+          <div class="flex h-full flex-col gap-6 surface-card p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex min-w-0 items-center gap-3">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
                 </div>
-                <span class="font-medium text-cream-50">Appointment Booking</span>
+                <span class="truncate font-medium text-cream-50">Appointment booking</span>
               </div>
-              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Scheduling</span>
+              <span class="shrink-0 rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Scheduling</span>
             </div>
-            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-blue-400" data-audio-bars>
+            <div class="flex h-16 items-center justify-center gap-1 text-primary-400 opacity-80" data-audio-bars aria-hidden="true">
               <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
             </div>
             <div class="flex items-center justify-center border-t border-white/5 pt-4">
-              <button data-audio-id="2" class="flex h-12 w-12 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg shadow-blue-500/20 transition-all hover:bg-blue-400">
-                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <button type="button" data-audio-id="2" class="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white transition-colors hover:bg-primary-600" aria-label="Play appointment booking sample" aria-pressed="false">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- WhatsApp -->
-        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="3">
-          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-emerald-500/20 bg-emerald-500/10 text-emerald-400">
-                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
+        <div class="w-[min(85vw,22rem)] shrink-0 snap-center md:w-auto" data-audio-card="3">
+          <div class="flex h-full flex-col gap-6 surface-card p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex min-w-0 items-center gap-3">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>
                 </div>
-                <span class="font-medium text-cream-50">Handover to Human</span>
+                <span class="truncate font-medium text-cream-50">Handover to human</span>
               </div>
-              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Transfer</span>
+              <span class="shrink-0 rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Transfer</span>
             </div>
-            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-emerald-400" data-audio-bars>
+            <div class="flex h-16 items-center justify-center gap-1 text-primary-400 opacity-80" data-audio-bars aria-hidden="true">
               <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
             </div>
             <div class="flex items-center justify-center border-t border-white/5 pt-4">
-              <button data-audio-id="3" class="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:bg-emerald-400">
-                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <button type="button" data-audio-id="3" class="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white transition-colors hover:bg-primary-600" aria-label="Play handover sample" aria-pressed="false">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Cold Call Screening -->
-        <div class="w-[85vw] max-w-md shrink-0 snap-center md:w-auto" data-audio-card="4">
-          <div class="flex flex-col gap-6 rounded-2xl border border-white/5 bg-navy-900 p-6 transition-colors hover:border-white/10">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-3">
-                <div class="flex h-10 w-10 items-center justify-center rounded-full border border-amber-500/20 bg-amber-500/10 text-amber-400">
-                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div class="w-[min(85vw,22rem)] shrink-0 snap-center md:w-auto" data-audio-card="4">
+          <div class="flex h-full flex-col gap-6 surface-card p-6">
+            <div class="flex items-center justify-between gap-3">
+              <div class="flex min-w-0 items-center gap-3">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-primary-400">
+                  <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
-                <span class="font-medium text-cream-50">Cold Call Screening</span>
+                <span class="truncate font-medium text-cream-50">Cold call screening</span>
               </div>
-              <span class="rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Filtering</span>
+              <span class="shrink-0 rounded-md border border-white/10 px-2 py-1 text-xs text-cream-500">Filtering</span>
             </div>
-            <div class="flex h-16 items-center justify-center gap-1 opacity-80 text-amber-400" data-audio-bars>
+            <div class="flex h-16 items-center justify-center gap-1 text-primary-400 opacity-80" data-audio-bars aria-hidden="true">
               <div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div><div class="audio-bar w-1 rounded-full bg-current"></div>
             </div>
             <div class="flex items-center justify-center border-t border-white/5 pt-4">
-              <button data-audio-id="4" class="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-white shadow-lg shadow-amber-500/20 transition-all hover:bg-amber-400">
-                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+              <button type="button" data-audio-id="4" class="flex h-12 w-12 items-center justify-center rounded-full bg-primary-500 text-white transition-colors hover:bg-primary-600" aria-label="Play cold call screening sample" aria-pressed="false">
+                <svg data-icon-play class="ml-0.5 h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg data-icon-pause class="hidden h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
               </button>
             </div>
           </div>
@@ -345,186 +355,280 @@
       </div>
 
       <div class="mt-8 flex justify-center gap-2 md:hidden">
-        <button data-sample-dot="0" class="h-2 w-8 rounded-full bg-primary-500 transition-all" aria-label="Demo 1"></button>
-        <button data-sample-dot="1" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 2"></button>
-        <button data-sample-dot="2" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 3"></button>
-        <button data-sample-dot="3" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 4"></button>
+        <button type="button" data-sample-dot="0" class="h-2 w-8 rounded-full bg-primary-500 transition-all" aria-label="Demo 1" aria-current="true"></button>
+        <button type="button" data-sample-dot="1" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 2" aria-current="false"></button>
+        <button type="button" data-sample-dot="2" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 3" aria-current="false"></button>
+        <button type="button" data-sample-dot="3" class="h-2 w-2 rounded-full bg-white/20 transition-all" aria-label="Demo 4" aria-current="false"></button>
       </div>
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="rounded-t-[3rem] bg-cream-50 px-6 py-24 text-navy-950 lg:px-12">
+  <!-- WhatsApp feature demo -->
+  <section id="whatsapp" class="border-t border-white/5 bg-navy-900 px-6 py-16 sm:py-24 lg:px-12">
     <div class="mx-auto max-w-7xl">
+      <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+        <div>
+          <p class="section-eyebrow">WhatsApp</p>
+          <h2 class="section-title mb-4">WhatsApp, handled for you</h2>
+          <p class="max-w-lg text-base leading-relaxed text-cream-500 sm:text-lg">
+            The same receptionist answers WhatsApp when you’re busy. Customers ask questions, check availability, and book — while confirmations stay visible to you.
+          </p>
+        </div>
+
+        <div class="w-full max-w-lg justify-self-center lg:justify-self-end">
+          <div class="overflow-hidden rounded-2xl border border-white/10 bg-navy-950">
+            <div class="flex items-center gap-2.5 border-b border-white/10 bg-navy-900 px-3.5 py-3">
+              <div class="relative shrink-0">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary-500">
+                  <span class="text-[10px] font-bold text-white">CK</span>
+                </div>
+                <div class="absolute -bottom-0.5 -right-0.5 h-2.5 w-2.5 rounded-full border-2 border-navy-900 bg-brandgreen-500" aria-hidden="true"></div>
+              </div>
+              <div class="min-w-0 leading-tight">
+                <div class="truncate text-sm font-semibold text-white">Your receptionist</div>
+                <div class="text-[11px] text-cream-500">online</div>
+              </div>
+            </div>
+
+            <div class="space-y-2.5 bg-navy-950 px-3.5 py-3.5">
+              <div class="flex justify-start">
+                <div class="relative max-w-[88%] rounded-2xl rounded-tl-md border border-white/10 bg-navy-850 px-3 pb-5 pt-2.5">
+                  <div class="mb-1 text-[11px] font-semibold text-cream-200">Customer</div>
+                  <div class="pr-10 text-[13px] font-medium leading-snug text-white">can i book a pilates class this week?</div>
+                  <div class="absolute bottom-1.5 right-2.5 text-[10px] text-cream-500/70">09:06</div>
+                </div>
+              </div>
+
+              <div class="flex justify-end">
+                <div class="relative max-w-[88%] rounded-2xl rounded-tr-md border border-white/10 bg-navy-800 px-3 pb-5 pt-2.5">
+                  <div class="mb-1 text-right text-[11px] font-semibold text-primary-400">Your receptionist</div>
+                  <div class="pr-12 text-[13px] font-medium leading-snug text-white">Yes, Pilates is available every Friday at 9 am. Would you like to book this class?</div>
+                  <div class="absolute bottom-1.5 right-2.5 text-[10px] text-cream-500/70">09:07</div>
+                </div>
+              </div>
+
+              <div class="flex justify-start">
+                <div class="relative max-w-[88%] rounded-2xl rounded-tl-md border border-white/10 bg-navy-850 px-3 pb-5 pt-2.5">
+                  <div class="mb-1 text-[11px] font-semibold text-cream-200">Customer</div>
+                  <div class="pr-10 text-[13px] font-medium leading-snug text-white">yes please</div>
+                  <div class="absolute bottom-1.5 right-2.5 text-[10px] text-cream-500/70">09:07</div>
+                </div>
+              </div>
+
+              <div class="flex justify-end">
+                <div class="relative max-w-[88%] rounded-2xl rounded-tr-md border border-white/10 bg-navy-800 px-3 pb-5 pt-2.5">
+                  <div class="mb-1 text-right text-[11px] font-semibold text-primary-400">Your receptionist</div>
+                  <div class="pr-12 text-[13px] font-medium leading-snug text-white">Your booking is confirmed on Friday, July 31st at 9 am.</div>
+                  <div class="absolute bottom-1.5 right-2.5 text-[10px] text-cream-500/70">09:08</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Pricing -->
+  <section id="pricing" class="border-t border-white/5 bg-cream-50 px-6 py-20 text-navy-950 sm:py-24 lg:px-12">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-12 max-w-2xl">
+        <p class="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-primary-600">Pricing</p>
+        <h2 class="font-display text-3xl font-semibold tracking-tight text-navy-950 md:text-5xl">Simple plans. Clear outcomes.</h2>
+        <p class="mt-4 text-base text-navy-500">Start answering calls and WhatsApp today. Upgrade when you’re ready to book and escalate.</p>
+      </div>
       <div class="mx-auto grid gap-6 lg:grid-cols-3">
-        <div class="flex flex-col rounded-3xl border border-cream-200 bg-white p-8 shadow-sm">
-          <div class="mb-8 flex items-start justify-between">
-              <span class="text-sm font-semibold uppercase tracking-wider text-navy-500">Starter</span>
-            </div>
-            <div class="mb-6 flex items-baseline gap-1">
-              <span class="text-6xl font-semibold tracking-tight text-navy-950">R599</span>
-              <span class="text-xl text-navy-500">/mo</span>
-            </div>
-            <ul class="space-y-4 font-medium text-navy-700">
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Call Kudu phone number</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>500 call minutes per month</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>1 Female + 1 Male South African voice</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Professional tone</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>AI Informational Mode</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>SMS capability</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Follow Up tracking</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Message and Call back requests</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Basic call logging</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Email support</li>
-            </ul>
+        <div class="flex flex-col rounded-2xl border border-cream-200 bg-white p-6 sm:p-8">
+          <span class="mb-2 text-sm font-semibold uppercase tracking-wider text-navy-500">Starter</span>
+          <p class="mb-6 text-sm text-navy-500">Answer calls and WhatsApp, capture leads — great for getting live fast.</p>
+          <div class="mb-6 flex flex-wrap items-baseline gap-1">
+            <span class="text-5xl font-semibold tracking-tight text-navy-950 sm:text-6xl">R599</span>
+            <span class="text-xl text-navy-500">/mo</span>
+          </div>
+          <ul class="mb-8 flex-1 space-y-4 font-medium text-navy-700">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Call Kudu phone number</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp answering</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>500 call minutes per month</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>South African voices</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Info mode (answers &amp; messages)</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>SMS &amp; Follow Ups</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Email support</li>
+          </ul>
+          <a href="#get-started" class="btn-secondary-light mt-auto w-full">Get started</a>
         </div>
-        <div class="relative flex flex-col overflow-hidden rounded-3xl border border-navy-800 bg-navy-900 p-8 text-cream-50 shadow-2xl">
-          <div class="absolute right-0 top-0 h-24 w-24 bg-primary-500 opacity-20 blur-[60px]"></div>
-          <div class="mb-8 flex items-start justify-between">
-              <span class="text-sm font-semibold uppercase tracking-wider text-primary-400">Professional</span>
-            </div>
-            <div class="mb-6 flex items-baseline gap-1">
-              <span class="text-6xl font-semibold tracking-tight text-white">R2,499</span>
-              <span class="text-xl text-navy-400">/mo</span>
-            </div>
-            <ul class="space-y-4 font-medium text-cream-200">
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Call Kudu phone number</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Unlimited minutes</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Variety of Female and Male Voices</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Variety of Accents and Tones</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>AI Full Booking or Info Mode</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>SMS capability</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Follow Up tracking</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Message and Call back requests</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Call escalation</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Cold Call Filter</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Call logging and Recording</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Calendar Integrations</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Premium Support</li>
-            </ul>
+        <div class="relative flex flex-col rounded-2xl border border-navy-800 bg-navy-900 p-6 text-cream-50 sm:p-8">
+          <span class="mb-2 text-sm font-semibold uppercase tracking-wider text-primary-400">Professional</span>
+          <p class="mb-6 text-sm text-cream-500">Full booking, escalation, and richer voices — for teams that live on the phone and WhatsApp.</p>
+          <div class="mb-6 flex flex-wrap items-baseline gap-1">
+            <span class="text-5xl font-semibold tracking-tight text-white sm:text-6xl">R2,499</span>
+            <span class="text-xl text-navy-400">/mo</span>
+          </div>
+          <ul class="mb-8 flex-1 space-y-4 font-medium text-cream-200">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Unlimited minutes</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp answering</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Full booking or info mode</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Calendar integrations</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Call escalation &amp; cold-call filter</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Voice &amp; accent variety</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-primary-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Recording &amp; premium support</li>
+          </ul>
+          <a href="#get-started" class="btn-primary-light mt-auto w-full">Get started</a>
         </div>
-        <div class="flex flex-col rounded-3xl border border-navy-800 bg-navy-950 p-8 text-cream-50">
-          <div class="mb-8 flex items-start justify-between">
-              <span class="text-sm font-semibold uppercase tracking-wider text-navy-400">Enterprise</span>
-            </div>
-            <div class="mb-6 flex items-baseline gap-1"><span class="text-5xl font-semibold tracking-tight text-white">POA</span></div>
-            <ul class="space-y-4 font-medium text-cream-200">
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span class="font-bold">Everything in Professional</span></li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Custom API Integrations</li>
-              <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Outbound Calling</li>
-            </ul>
+        <div class="flex flex-col rounded-2xl border border-navy-800 bg-navy-950 p-6 text-cream-50 sm:p-8">
+          <span class="mb-2 text-sm font-semibold uppercase tracking-wider text-navy-400">Enterprise</span>
+          <p class="mb-6 text-sm text-cream-500">Custom integrations and outbound for multi-location teams.</p>
+          <div class="mb-6 flex items-baseline gap-1"><span class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">POA</span></div>
+          <ul class="mb-8 flex-1 space-y-4 font-medium text-cream-200">
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span class="font-bold">Everything in Professional</span></li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>WhatsApp answering</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Custom API integrations</li>
+            <li class="flex gap-3"><svg class="h-5 w-5 shrink-0 text-cream-200" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Outbound calling</li>
+          </ul>
+          <a href="mailto:support@callkudu.co.za?subject=Enterprise%20enquiry" class="btn-ghost-dark mt-auto w-full">Talk to us</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ -->
-  <section id="faq" class="relative overflow-hidden bg-navy-950 py-24">
-    <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent"></div>
-    <div class="relative z-10 mx-auto max-w-6xl px-6 lg:px-12">
-      <div class="mb-16 text-center">
-        <h2 class="mb-4 text-4xl font-bold tracking-tight text-cream-50 md:text-5xl">Frequently Asked Questions</h2>
-        <p class="mx-auto max-w-2xl text-lg text-navy-400">Everything you need to know about Call Kudu</p>
+  <section id="faq" class="border-t border-white/5 bg-navy-950 py-20 sm:py-24">
+    <div class="mx-auto max-w-3xl px-6 lg:px-12">
+      <div class="mb-12 max-w-2xl md:mb-16">
+        <p class="section-eyebrow">FAQ</p>
+        <h2 class="section-title">Frequently asked questions</h2>
+        <p class="mt-4 text-base text-cream-500">Everything you need to know before you go live.</p>
       </div>
 
-      <div class="divide-y divide-white/10">
-        <div data-faq-item class="border-b border-white/10">
-          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
-            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">What is an AI receptionist and how is it different from voicemail?</span>
+      <div class="divide-y divide-white/10 border-y border-white/10">
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">What is a smart virtual receptionist and how is it different from voicemail?</span>
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">An AI receptionist holds a two-way conversation in real time. Unlike voicemail, Call Kudu can book appointments, answer questions, and send text messages immediately—keeping your business live 24/7.</p>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">A smart virtual receptionist holds a two-way conversation in real time. Unlike voicemail, Call Kudu can book appointments, answer questions, and send text messages immediately — keeping your business live 24/7.</p>
+            </div>
           </div>
         </div>
-        <div data-faq-item class="border-b border-white/10">
-          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
-            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">Can the AI understand South African accents?</span>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">What kind of businesses is this for?</span>
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">Yes. Call Kudu is built for South African businesses, with natural language processing tuned for local accents and conversational English. Your callers hear a friendly, professional voice—not a robotic overseas accent.</p>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">Any business that answers the phone or WhatsApp. If customers reach you for questions, bookings, or to leave a message, Call Kudu can cover those conversations when you’re busy — and hand over to you when a person is needed.</p>
+            </div>
           </div>
         </div>
-        <div data-faq-item class="border-b border-white/10">
-          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
-            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">How much does it cost compared to hiring staff?</span>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">Will it sound robotic?</span>
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">Call Kudu costs a fraction of a full-time receptionist. Plans start at R599/month with unlimited minutes, 24/7 coverage, and no holiday pay or sick leave—making it the most cost-effective way to never miss a call.</p>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">You choose a natural South African voice and tone, then preview the greeting with your business name before you go live. Most callers experience a clear, professional front desk — not a tinny robocall.</p>
+            </div>
           </div>
         </div>
-        <div data-faq-item class="border-b border-white/10">
-          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
-            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">How hard is it to set up?</span>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">How hard is it to set up?</span>
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">Setup takes less than 10 minutes. Add your business details, services, and pricing in the dashboard, then forward calls to your Call Kudu number. You can turn the AI on or off instantly.</p>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">No technical skills required. Preview with your business name in under a minute, then follow a short guided setup for your number, voice, and call forwarding or WhatsApp. When you’re ready, turn the receptionist on.</p>
+            </div>
           </div>
         </div>
-        <div data-faq-item class="border-b border-white/10">
-          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
-            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">Will I lose my existing business phone number?</span>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">Will I lose my existing business phone number?</span>
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">No. You keep your existing number and simply set up call forwarding when you're busy or after a few rings. You stay in full control of your primary business line.</p>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">No. You keep your existing number and simply set up call forwarding when you’re busy or after a few rings. You stay in full control of your primary business line.</p>
+            </div>
           </div>
         </div>
-        <div data-faq-item class="border-b border-white/10">
-          <button data-faq-toggle class="group flex w-full items-center justify-between py-6 text-left">
-            <span class="pr-8 text-lg font-medium text-cream-50 transition-colors group-hover:text-white">What happens if the AI doesn't know the answer?</span>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">Can I use my existing WhatsApp number?</span>
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
-          <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">Call Kudu takes a detailed message, marks the call for your attention, or transfers to you if the caller asks for a person. Your customers always feel heard.</p>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">Yes. Link your WhatsApp Business number in Channels. You can turn WhatsApp answering on or off whenever you need.</p>
+            </div>
+          </div>
+        </div>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">What if it doesn’t know the answer?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">It takes a detailed message, flags the conversation for your attention, or transfers to you if the caller asks for a person. Customers always feel heard.</p>
+            </div>
+          </div>
+        </div>
+        <div data-faq-item>
+          <button type="button" data-faq-toggle class="group flex w-full items-center justify-between gap-4 py-5 text-left sm:py-6" aria-expanded="false">
+            <span class="text-base font-medium text-cream-50 transition-colors group-hover:text-white sm:pr-4 sm:text-lg">Is call recording disclosed?</span>
+            <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div data-faq-panel class="faq-panel">
+            <div class="faq-panel-inner">
+            <p class="pb-5 text-base leading-relaxed text-cream-500 sm:pb-6">When recording is enabled for your account, callers hear a spoken notice at the start of the call. You’re responsible for lawful use in your jurisdiction; see our Privacy Policy and Terms for details.</p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="mt-16 text-center">
-        <p class="mb-6 text-navy-400">Still have questions? We're here to help.</p>
-        <a href="mailto:support@callkudu.co.za" class="inline-flex items-center gap-2 rounded-lg bg-primary-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-primary-600">Get in Touch</a>
+      <div class="mt-12 sm:mt-16">
+        <p class="mb-4 text-cream-500">Still have questions? We’re here to help.</p>
+        <a href="mailto:support@callkudu.co.za" class="btn-primary">Get in touch</a>
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="relative overflow-hidden border-t border-white/5 bg-navy-950 pb-8 pt-24 text-cream-50">
-    <div class="pointer-events-none absolute bottom-0 left-0 right-0 flex select-none justify-center overflow-hidden">
-      <div class="whitespace-nowrap text-center text-[18vw] font-bold leading-none tracking-tighter text-white opacity-[0.02]">CALL KUDU</div>
-    </div>
-    <div class="relative z-10 mx-auto max-w-7xl px-6 lg:px-12">
-      <div class="mb-24 flex flex-col items-end justify-between gap-10 md:flex-row">
-        <h2 class="max-w-lg text-5xl font-medium tracking-tight">Stop missing calls.<br />Start closing deals.</h2>
-        <button data-open-pilot class="rounded-lg bg-primary-500 px-8 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-600">Join Pilot</button>
+  <footer class="border-t border-white/5 bg-navy-950 pb-8 pt-16 text-cream-50 sm:pt-20">
+    <div class="mx-auto max-w-7xl px-6 lg:px-12">
+      <div class="mb-16 flex flex-col items-start justify-between gap-8 md:mb-20 md:flex-row md:items-end">
+        <h2 class="font-display max-w-lg text-3xl font-semibold tracking-tight sm:text-4xl md:text-5xl">Your front desk,<br />always on.</h2>
+        <a href="#get-started" class="btn-primary shrink-0">Get started</a>
       </div>
-      <div class="mb-20 grid grid-cols-1 gap-12 lg:grid-cols-12">
+      <div class="mb-16 grid grid-cols-1 gap-12 lg:grid-cols-12">
         <div class="lg:col-span-4">
-          <div class="rounded-2xl border border-white/10 bg-gradient-to-br from-navy-900/50 to-navy-900/30 p-8 backdrop-blur-sm transition-all duration-300 hover:border-white/20">
-            <h4 class="mb-6 text-lg font-semibold text-white">Get in Touch</h4>
-            <div class="space-y-6">
-              <a href="mailto:support@callkudu.co.za" class="group flex cursor-pointer items-start gap-4">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary-500/10 transition-colors group-hover:bg-primary-500/20">
-                  <svg class="h-5 w-5 text-primary-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
-                </div>
-                <div>
-                  <p class="mb-1 text-xs font-medium text-navy-400">Email</p>
-                  <p class="text-sm font-medium text-cream-50 transition-colors group-hover:text-primary-400">support@callkudu.co.za</p>
-                </div>
-              </a>
-            </div>
+          <div class="surface-card p-6 sm:p-8">
+            <h4 class="mb-6 text-lg font-semibold text-white">Get in touch</h4>
+            <a href="mailto:support@callkudu.co.za" class="group flex items-start gap-4">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5">
+                <svg class="h-5 w-5 text-primary-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/></svg>
+              </div>
+              <div>
+                <p class="mb-1 text-xs font-medium text-cream-500">Email</p>
+                <p class="text-sm font-medium text-cream-50 transition-colors group-hover:text-primary-400">support@callkudu.co.za</p>
+              </div>
+            </a>
           </div>
         </div>
         <div class="grid grid-cols-2 gap-12 text-sm md:grid-cols-3 lg:col-span-8">
           <div>
             <h4 class="mb-6 font-semibold text-white">Product</h4>
             <ul class="space-y-4 font-medium text-navy-400">
+              <li><a href="#getting-started" class="transition-colors hover:text-cream-50">Getting started</a></li>
               <li><a href="#features" class="transition-colors hover:text-cream-50">Features</a></li>
+              <li><a href="#samples" class="transition-colors hover:text-cream-50">Voice</a></li>
+              <li><a href="#whatsapp" class="transition-colors hover:text-cream-50">WhatsApp</a></li>
               <li><a href="#pricing" class="transition-colors hover:text-cream-50">Pricing</a></li>
-              <li><a href="#samples" class="transition-colors hover:text-cream-50">Demos</a></li>
               <li><a href="#faq" class="transition-colors hover:text-cream-50">FAQ</a></li>
             </ul>
           </div>
@@ -534,12 +638,12 @@
               <li><a href="mailto:support@callkudu.co.za" class="transition-colors hover:text-cream-50">Contact</a></li>
               <li><a href="/privacy" class="transition-colors hover:text-cream-50">Privacy Policy</a></li>
               <li><a href="/terms" class="transition-colors hover:text-cream-50">Terms of Service</a></li>
-              <li><a href="https://app.callkudu.co.za" class="transition-colors hover:text-cream-50">Launch App</a></li>
+              <li><a href="https://app.callkudu.co.za" class="transition-colors hover:text-cream-50">Login</a></li>
             </ul>
           </div>
           <div class="col-span-2 md:col-span-1">
             <h4 class="mb-6 font-semibold text-white">Try it now</h4>
-            <p class="text-navy-400">Scroll up to talk to our AI assistant live—no signup required.</p>
+            <p class="text-navy-400">Find your business above to preview your virtual receptionist.</p>
           </div>
         </div>
       </div>
@@ -552,29 +656,6 @@
       </div>
     </div>
   </footer>
-
-  <!-- Pilot modal -->
-  <div id="pilotModal" class="pilot-overlay" onclick="hidePilotModal(event)">
-    <div class="pilot-dialog" onclick="event.stopPropagation()">
-      <button onclick="hidePilotModal()" class="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-gray-500 transition-colors hover:bg-gray-200" aria-label="Close">
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-      <h2 class="mb-2 text-2xl font-bold text-gray-900">Sign Up For Pilot</h2>
-      <p class="mb-6 text-sm text-gray-500">Full Call Kudu membership at no cost. Tell us you're interested and we'll be in touch.</p>
-      <form id="pilotForm">
-        <div class="mb-4">
-          <label for="pilotName" class="mb-1.5 block text-sm font-medium text-gray-700">Name *</label>
-          <input type="text" id="pilotName" name="name" required placeholder="Your name" class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20" />
-        </div>
-        <div class="mb-6">
-          <label for="pilotEmail" class="mb-1.5 block text-sm font-medium text-gray-700">Email *</label>
-          <input type="email" id="pilotEmail" name="email" required placeholder="you@business.co.za" class="w-full rounded-lg border border-gray-200 px-4 py-2.5 text-sm outline-none transition focus:border-primary-500 focus:ring-2 focus:ring-primary-500/20" />
-        </div>
-        <button type="submit" id="pilotSubmitBtn" class="w-full rounded-lg bg-primary-500 py-3 text-sm font-semibold text-white transition-colors hover:bg-primary-600 disabled:opacity-50">Submit Interest</button>
-        <div id="pilotMessage" class="hidden"></div>
-      </form>
-    </div>
-  </div>
 
 </body>
 </html>
