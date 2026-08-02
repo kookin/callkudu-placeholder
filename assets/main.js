@@ -197,18 +197,83 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initMobileNav();
   initSampleCarousel();
-  initContactEmbed();
+  initContactModal();
 });
 
-function initContactEmbed() {
-  const iframe = document.getElementById('callkudu-contact-embed');
-  if (!iframe) return;
+function initContactModal() {
+  const overlay = document.getElementById('contactModal');
+  const form = document.getElementById('contactForm');
+  const msg = document.getElementById('contactMessage');
+  const btn = document.getElementById('contactSubmitBtn');
+  if (!overlay || !form || !btn) return;
 
-  window.addEventListener('message', (event) => {
-    const data = event.data;
-    if (!data || data.type !== 'callkudu-contact-embed-resize') return;
-    const height = Number(data.height);
-    if (!Number.isFinite(height) || height < 200) return;
-    iframe.style.height = `${Math.min(Math.ceil(height) + 8, 900)}px`;
+  const open = () => {
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    msg.className = 'hidden';
+    msg.textContent = '';
+    window.setTimeout(() => document.getElementById('contact-name')?.focus(), 50);
+  };
+
+  const close = () => {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  document.querySelectorAll('[data-open-contact]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      open();
+    });
+  });
+
+  document.querySelectorAll('[data-close-contact]').forEach((el) => {
+    el.addEventListener('click', close);
+  });
+
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) close();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) close();
+  });
+
+  // Deep-link: /#contact opens the modal
+  if (window.location.hash === '#contact') {
+    open();
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    msg.className = 'hidden';
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: form.name.value.trim(),
+          email: form.email.value.trim(),
+          phone: form.phone.value.trim(),
+          message: form.message.value.trim(),
+          company: form.company.value.trim(),
+        }),
+      });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(result.error || 'Something went wrong');
+
+      msg.textContent = 'Thanks — your message was sent. We’ll get back to you soon.';
+      msg.className = 'rounded-xl bg-brandgreen-500/10 px-4 py-3 text-sm text-brandgreen-400';
+      form.reset();
+    } catch (err) {
+      msg.textContent = err.message || 'Failed to send. Please email support@callkudu.co.za.';
+      msg.className = 'rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-400';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+    }
   });
 }

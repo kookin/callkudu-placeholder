@@ -8,7 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "nodemailer": "^6.9.16"
+    "nodemailer": "^6.9.16",
+    "resend": "^6.18.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
