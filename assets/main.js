@@ -197,4 +197,18 @@ document.addEventListener('DOMContentLoaded', () => {
   initFaq();
   initMobileNav();
   initSampleCarousel();
+  initContactEmbed();
 });
+
+function initContactEmbed() {
+  const iframe = document.getElementById('callkudu-contact-embed');
+  if (!iframe) return;
+
+  window.addEventListener('message', (event) => {
+    const data = event.data;
+    if (!data || data.type !== 'callkudu-contact-embed-resize') return;
+    const height = Number(data.height);
+    if (!Number.isFinite(height) || height < 200) return;
+    iframe.style.height = `${Math.min(Math.ceil(height) + 8, 900)}px`;
+  });
+}
