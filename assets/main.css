@@ -97,6 +97,61 @@
     transition: height 0.2s ease;
   }
 
+  /* Section surfaces — distinct bands, brand-true (no neon/purple) */
+  .surface-ink {
+    background-color: #0b1221;
+  }
+
+  .surface-slate {
+    background-color: #131c2e;
+  }
+
+  .surface-panel {
+    background-color: #1a2438;
+  }
+
+  .surface-paper {
+    background-color: #f9f8f4;
+    color: #0b1221;
+  }
+
+  .surface-wa {
+    background-color: #0c1612;
+  }
+
+  .surface-ember {
+    background-color: #171310;
+  }
+
+  .surface-paper .eyebrow {
+    color: #e85a1f;
+  }
+
+  .surface-paper .heading {
+    color: #0b1221;
+  }
+
+  .surface-paper .lede {
+    color: #5c5a55;
+  }
+
+  .surface-paper .card {
+    background-color: #ffffff;
+    border-color: #e6e4dc;
+  }
+
+  .surface-paper .card-title {
+    color: #0b1221;
+  }
+
+  .surface-paper .card-body {
+    color: #5c5a55;
+  }
+
+  .surface-paper .step-num {
+    color: #ff6b2c;
+  }
+
   .pilot-overlay {
     @apply fixed inset-0 z-[100] flex items-center justify-center bg-navy-950/80 p-4 opacity-0 pointer-events-none backdrop-blur-sm transition-opacity duration-300;
   }
