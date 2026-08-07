@@ -2,7 +2,7 @@ import './main.css';
 
 const audioFiles = {
   1: '/lead_qualifier.mp3',
-  2: '/callkudu-booking-cheerful.mp3',
+  2: '/appointment_booking.mp3',
   3: '/callkudu-transfer-casual.mp3',
   4: '/cold_caller.mp3',
 };
