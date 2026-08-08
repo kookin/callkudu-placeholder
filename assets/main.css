@@ -73,6 +73,19 @@
     animation-delay: 0.9s;
   }
 
+  .wa-bubble {
+    will-change: transform;
+    animation: wa-float 5.5s ease-in-out infinite;
+  }
+
+  .wa-bubble-in {
+    animation-name: wa-float-in;
+  }
+
+  .wa-bubble-out {
+    animation-name: wa-float-out;
+  }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -174,6 +187,17 @@
   50% {
     height: 100%;
   }
+}
+
+
+@keyframes wa-float-in {
+  0%, 100% { transform: translateX(-0.75rem) rotate(-2deg) scale(1.1); }
+  50% { transform: translateX(-1.1rem) translateY(-0.35rem) rotate(-2.5deg) scale(1.13); }
+}
+
+@keyframes wa-float-out {
+  0%, 100% { transform: translateX(0.75rem) rotate(2deg) scale(1.1); }
+  50% { transform: translateX(1.1rem) translateY(-0.4rem) rotate(2.5deg) scale(1.13); }
 }
 
 @keyframes float-slow {
