@@ -193,11 +193,11 @@ function initPilotModal() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  initAudioPlayers();
-  initFaq();
-  initMobileNav();
-  initSampleCarousel();
-  initContactModal();
+  try { initAudioPlayers(); } catch (err) { console.error(err); }
+  try { initFaq(); } catch (err) { console.error(err); }
+  try { initMobileNav(); } catch (err) { console.error(err); }
+  try { initSampleCarousel(); } catch (err) { console.error(err); }
+  try { initContactModal(); } catch (err) { console.error(err); }
 });
 
 function initContactModal() {
@@ -210,25 +210,38 @@ function initContactModal() {
   const open = () => {
     overlay.classList.add('active');
     document.body.style.overflow = 'hidden';
-    msg.className = 'hidden';
-    msg.textContent = '';
+    if (msg) {
+      msg.className = 'hidden';
+      msg.textContent = '';
+    }
     window.setTimeout(() => document.getElementById('contact-name')?.focus(), 50);
   };
 
   const close = () => {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
+    if (window.location.hash === '#contact') {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
   };
 
-  document.querySelectorAll('[data-open-contact]').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      open();
-    });
+  // Event delegation so footer/pricing contact controls keep working after DOM changes
+  document.addEventListener('click', (e) => {
+    const opener = e.target.closest?.('[data-open-contact]');
+    if (!opener) return;
+    e.preventDefault();
+    open();
+    if (opener.getAttribute('href') === '#contact' && window.location.hash !== '#contact') {
+      history.replaceState(null, '', '#contact');
+    }
   });
 
-  document.querySelectorAll('[data-close-contact]').forEach((el) => {
-    el.addEventListener('click', close);
+  document.addEventListener('click', (e) => {
+    const closer = e.target.closest?.('[data-close-contact]');
+    if (closer) {
+      e.preventDefault();
+      close();
+    }
   });
 
   overlay.addEventListener('click', (e) => {
@@ -239,16 +252,20 @@ function initContactModal() {
     if (e.key === 'Escape' && overlay.classList.contains('active')) close();
   });
 
-  // Deep-link: /#contact opens the modal
-  if (window.location.hash === '#contact') {
-    open();
-  }
+  const openFromHash = () => {
+    if (window.location.hash === '#contact') open();
+  };
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     btn.disabled = true;
     btn.textContent = 'Sending…';
-    msg.className = 'hidden';
+    if (msg) {
+      msg.className = 'hidden';
+      msg.textContent = '';
+    }
 
     try {
       const res = await fetch('/api/contact', {
@@ -265,12 +282,16 @@ function initContactModal() {
       const result = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(result.error || 'Something went wrong');
 
-      msg.textContent = 'Thanks — your message was sent. We’ll get back to you soon.';
-      msg.className = 'rounded-xl bg-brandgreen-500/10 px-4 py-3 text-sm text-brandgreen-400';
+      if (msg) {
+        msg.textContent = 'Thanks — your message was sent. We’ll get back to you soon.';
+        msg.className = 'rounded-xl bg-brandgreen-500/10 px-4 py-3 text-sm text-brandgreen-400';
+      }
       form.reset();
     } catch (err) {
-      msg.textContent = err.message || 'Failed to send. Please email support@callkudu.co.za.';
-      msg.className = 'rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-400';
+      if (msg) {
+        msg.textContent = err.message || 'Failed to send. Please email support@callkudu.co.za.';
+        msg.className = 'rounded-xl bg-red-500/10 px-4 py-3 text-sm text-red-400';
+      }
     } finally {
       btn.disabled = false;
       btn.textContent = 'Send message';
