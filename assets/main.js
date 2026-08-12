@@ -214,6 +214,10 @@ function initContactModal() {
       msg.className = 'hidden';
       msg.textContent = '';
     }
+    const openedAt = document.getElementById('contact-opened-at');
+    const jsToken = document.getElementById('contact-js-token');
+    if (openedAt) openedAt.value = String(Date.now());
+    if (jsToken) jsToken.value = 'ck-ok';
     window.setTimeout(() => document.getElementById('contact-name')?.focus(), 50);
   };
 
@@ -268,6 +272,10 @@ function initContactModal() {
     }
 
     try {
+      const openedRaw = Number(form.openedAt?.value) || Date.now();
+      const waitMs = Math.max(0, 2600 - (Date.now() - openedRaw));
+      if (waitMs > 0) await new Promise((r) => setTimeout(r, waitMs));
+
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -276,7 +284,10 @@ function initContactModal() {
           email: form.email.value.trim(),
           phone: form.phone.value.trim(),
           message: form.message.value.trim(),
-          company: form.company.value.trim(),
+          company: form.company?.value?.trim() || '',
+          website: form.website?.value?.trim() || '',
+          jsToken: form.jsToken?.value || 'ck-ok',
+          openedAt: openedRaw,
         }),
       });
       const result = await res.json().catch(() => ({}));
@@ -287,6 +298,10 @@ function initContactModal() {
         msg.className = 'rounded-xl bg-brandgreen-500/10 px-4 py-3 text-sm text-brandgreen-400';
       }
       form.reset();
+      const openedAt = document.getElementById('contact-opened-at');
+      const jsToken = document.getElementById('contact-js-token');
+      if (openedAt) openedAt.value = String(Date.now());
+      if (jsToken) jsToken.value = 'ck-ok';
     } catch (err) {
       if (msg) {
         msg.textContent = err.message || 'Failed to send. Please email support@callkudu.co.za.';
