@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-        display: ['Fraunces', 'Georgia', 'serif'],
+        sans: ['"Google Sans Flex"', '"Google Sans"', 'Roboto', 'Arial', 'sans-serif'],
+        display: ['"Google Sans Flex"', '"Google Sans"', 'Roboto', 'Arial', 'sans-serif'],
       },
       letterSpacing: {
         tight: '-0.02em',
