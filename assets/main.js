@@ -1,5 +1,45 @@
 import './main.css';
 
+/**
+ * ZA demo WhatsApp Business number (E.164 digits, no + or spaces).
+ * Confirm with founder before go-live. Leave empty to hide WhatsApp CTAs.
+ * UK: only set when a UK WABA is live — this site is ZA (callkudu.co.za).
+ */
+const DEMO_WHATSAPP_E164_ZA = '27797058560';
+const DEMO_WHATSAPP_PREFILL =
+  "Hi Call Kudu — I'd like to try your WhatsApp AI";
+
+function demoWhatsAppUrl() {
+  const digits = String(DEMO_WHATSAPP_E164_ZA || '').replace(/\D/g, '');
+  if (!digits) return '';
+  return `https://wa.me/${digits}?text=${encodeURIComponent(DEMO_WHATSAPP_PREFILL)}`;
+}
+
+function initDemoWhatsAppLinks() {
+  const url = demoWhatsAppUrl();
+  const dual = document.querySelector('[data-demo-cta-dual]');
+  const fallback = document.querySelector('[data-demo-cta-fallback]');
+
+  document.querySelectorAll('[data-demo-wa]').forEach((el) => {
+    if (!url) {
+      el.hidden = true;
+      return;
+    }
+    el.hidden = false;
+    if (el.tagName === 'A') {
+      el.setAttribute('href', url);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+  document.querySelectorAll('[data-demo-wa-block]').forEach((el) => {
+    el.hidden = !url;
+  });
+
+  if (dual) dual.hidden = !url;
+  if (fallback) fallback.hidden = !!url;
+}
+
 const audioFiles = {
   1: '/lead_qualifier.mp3',
   2: '/appointment_booking.mp3',
@@ -198,6 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   try { initMobileNav(); } catch (err) { console.error(err); }
   try { initSampleCarousel(); } catch (err) { console.error(err); }
   try { initContactModal(); } catch (err) { console.error(err); }
+  try { initDemoWhatsAppLinks(); } catch (err) { console.error(err); }
 });
 
 function initContactModal() {
