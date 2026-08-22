@@ -7,7 +7,7 @@ import './main.css';
  */
 const DEMO_WHATSAPP_E164_ZA = '27797058560';
 const DEMO_WHATSAPP_PREFILL =
-  "Hi Call Kudu — I'd like to try your WhatsApp AI";
+  'Hi Call Kudu — tell me about yourself';
 
 function demoWhatsAppUrl() {
   const digits = String(DEMO_WHATSAPP_E164_ZA || '').replace(/\D/g, '');
