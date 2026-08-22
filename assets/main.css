@@ -59,7 +59,7 @@
   .msg-bubble {
     animation: fade-slide-in 0.8s ease-out forwards;
     opacity: 0;
-    z-index: 10;
+    z-index: 30;
   }
 
   .msg-bubble.delay-1 {
