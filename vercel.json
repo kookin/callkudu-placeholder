@@ -2,6 +2,10 @@
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
-    { "source": "/blog", "destination": "/blog.html" }
+    { "source": "/blog", "destination": "/blog.html" },
+    {
+      "source": "/blog/property24-whatsapp-enquiries",
+      "destination": "/blog/property24-whatsapp-enquiries.html"
+    }
   ]
 }
