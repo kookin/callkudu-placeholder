@@ -1,11 +1,18 @@
 {
+  "redirects": [
+    {
+      "source": "/blog/property24-whatsapp-enquiries",
+      "destination": "/blog/real-estate-whatsapp-enquiries",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     { "source": "/privacy", "destination": "/privacy.html" },
     { "source": "/terms", "destination": "/terms.html" },
     { "source": "/blog", "destination": "/blog.html" },
     {
-      "source": "/blog/property24-whatsapp-enquiries",
-      "destination": "/blog/property24-whatsapp-enquiries.html"
+      "source": "/blog/real-estate-whatsapp-enquiries",
+      "destination": "/blog/real-estate-whatsapp-enquiries.html"
     }
   ]
 }

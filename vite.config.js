@@ -10,7 +10,7 @@ export default defineConfig({
         privacy: './privacy.html',
         terms: './terms.html',
         blog: './blog.html',
-        blogProperty24: './blog/property24-whatsapp-enquiries.html',
+        blogRealEstate: './blog/real-estate-whatsapp-enquiries.html',
       },
     },
   },
