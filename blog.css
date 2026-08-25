@@ -57,16 +57,16 @@
 }
 
 .blog-meta {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--navy-400);
-  margin-bottom: 20px;
+  margin-bottom: 0;
 }
 
 .blog-dek {
   font-size: 1.125rem;
   line-height: 1.65;
-  color: var(--cream-500);
-  margin-bottom: 0;
+  color: #d4d1c8;
+  margin: 0 0 36px;
 }
 
 .blog-page section {
@@ -85,7 +85,7 @@
 .blog-page li {
   font-size: 1.02rem;
   line-height: 1.7;
-  color: var(--cream-500);
+  color: #d4d1c8;
   margin-bottom: 14px;
 }
 
