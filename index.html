@@ -39,12 +39,9 @@
     </div>
 
     <div class="flex items-center gap-3">
-      <a href="https://app.callkudu.co.za" class="hidden items-center gap-2 rounded-full border-2 border-primary-500 bg-white/5 px-4 py-2 text-sm font-medium text-cream-50 transition-all hover:border-primary-400 hover:bg-primary-500/10 md:flex">
-        Launch App
-      </a>
-      <a href="#get-started" class="hidden items-center gap-2 rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-600 md:flex">
-        Sign Up
-      </a>
+      <button type="button" data-open-contact class="hidden items-center gap-2 rounded-full bg-primary-500 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-600 md:flex">
+        Contact Us
+      </button>
       <button id="mobileMenuToggle" class="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-cream-50 transition-all hover:bg-white/10 md:hidden" aria-label="Toggle menu">
         <svg id="menuIconOpen" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg id="menuIconClose" class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -61,8 +58,7 @@
         <a href="#faq" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">FAQ</a>
         <a href="/blog" class="block py-3 font-medium text-cream-200 transition-colors hover:text-cream-50">Blog</a>
         <div class="space-y-2 border-t border-white/10 pt-4">
-          <a href="https://app.callkudu.co.za" class="flex w-full items-center justify-center gap-2 rounded-full border-2 border-primary-500 bg-white/5 px-4 py-3 text-sm font-medium text-cream-50 transition-all hover:border-primary-400 hover:bg-primary-500/10">Launch App</a>
-          <a href="#get-started" class="flex w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 py-3 text-sm font-semibold text-white">Sign Up</a>
+          <button type="button" data-open-contact data-close-menu class="flex w-full items-center justify-center gap-2 rounded-full bg-primary-500 px-4 py-3 text-sm font-semibold text-white">Contact Us</button>
         </div>
       </div>
     </div>
@@ -82,18 +78,12 @@
         Voice and chat automation — Call Kudu answers when you can’t, and keeps you in the loop.
       </p>
 
-      <div id="get-started" class="hero-embed mx-auto w-full max-w-3xl scroll-mt-28">
-        <div id="callkudu-embed"></div>
+      <div class="mt-2 flex flex-col items-center gap-3">
+        <button type="button" data-open-contact class="inline-flex items-center justify-center rounded-full bg-primary-500 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-primary-600">
+          Contact Us
+        </button>
+        <p class="text-sm text-cream-500">Tell us about your business — we’ll get back to you shortly.</p>
       </div>
-      <p class="mt-4 text-sm text-cream-500">Need a demo? <a href="#contact" class="text-primary-400 underline hover:text-primary-300">Send us a message</a></p>
-      <script
-        src="/embed.js"
-        data-tenant="za"
-        data-app-url="https://app.callkudu.co.za"
-        data-source="callkudu-home"
-        data-theme="dark"
-        data-height="140"
-      ></script>
     </div>
 
     <!-- Phone mockup -->
@@ -622,7 +612,7 @@
             <svg data-faq-icon class="h-5 w-5 shrink-0 text-primary-500 transition-transform duration-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div data-faq-panel class="max-h-0 overflow-hidden transition-all duration-300">
-            <p class="pb-6 text-base leading-relaxed text-cream-200/90">No technical skills required. Preview with your business name in under a minute, then follow a short guided setup for your number, voice, and call forwarding or WhatsApp. When you’re ready, turn the receptionist on.</p>
+            <p class="pb-6 text-base leading-relaxed text-cream-200/90">No technical skills required. Get in touch and we’ll walk you through setup for your number, voice, and call forwarding or WhatsApp. When you’re ready, turn the receptionist on.</p>
           </div>
         </div>
         <div data-faq-item class="border-b border-white/10">
@@ -709,8 +699,8 @@
             </ul>
           </div>
           <div class="col-span-2 md:col-span-1">
-            <h4 class="mb-6 font-semibold text-white">Try it now</h4>
-            <p class="text-navy-400"><a href="#get-started" class="transition-colors hover:text-cream-50">Find your business above to preview your virtual receptionist.</a></p>
+            <h4 class="mb-6 font-semibold text-white">Get in touch</h4>
+            <p class="text-navy-400"><button type="button" data-open-contact class="transition-colors hover:text-cream-50">Send us a message</button> and we’ll help you get started.</p>
           </div>
         </div>
       </div>
