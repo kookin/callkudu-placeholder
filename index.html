@@ -78,12 +78,21 @@
         Voice and chat automation — Call Kudu answers when you can’t, and keeps you in the loop.
       </p>
 
-      <div class="mt-2 flex flex-col items-center gap-3">
-        <button type="button" data-open-contact class="inline-flex items-center justify-center rounded-full bg-primary-500 px-8 py-3.5 text-base font-semibold text-white transition-all hover:bg-primary-600">
-          Contact Us
-        </button>
-        <p class="text-sm text-cream-500">Tell us about your business — we’ll get back to you shortly.</p>
+      <div id="get-started" class="hero-embed mx-auto w-full max-w-3xl scroll-mt-28">
+        <div id="callkudu-embed"></div>
       </div>
+      <p class="mt-4 text-sm text-cream-500">
+        Prefer to talk first?
+        <button type="button" data-open-contact class="font-medium text-primary-400 underline underline-offset-4 hover:text-primary-300">Contact Us</button>
+      </p>
+      <script
+        src="/embed.js"
+        data-tenant="za"
+        data-app-url="https://app.callkudu.co.za"
+        data-source="callkudu-home"
+        data-theme="dark"
+        data-height="140"
+      ></script>
     </div>
 
     <!-- Phone mockup -->
